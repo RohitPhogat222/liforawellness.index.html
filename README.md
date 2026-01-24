@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="google-site-verification" content="HZDOVmSkbmLLlmKbGI3xixlhOCOxaUJOaZKwbU2EA-Y" />
-    
-    <title>Lifora Wellness</title>
-    </head>
-<body>
-    ...
-
-
 # Lifora Wellness 🌿
 
 Welcome to the official repository for **Lifora Wellness**. We are dedicated to the research of reusable resources and the creation of sustainable products through data-driven experimentation.
