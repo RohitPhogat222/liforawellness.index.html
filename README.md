@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="google-site-verification" content="MGUwoP2SLKxiCjwXP2mdjCLeVUDdKXar8mHVjDe-clA" />
-    <title>Lifora Wellness</title>
+    <title>lifora-wellness</title>
 </head>
 # Lifora Wellness 🌿
 
