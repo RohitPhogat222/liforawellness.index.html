@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="google-site-verification" content="MGUwoP2SLKxiCjwXP2mdjCLeVUDdKXar8mHVjDe-clA" />
+    <meta name="google-site-verification" content="HZDOVmSkbmLLlmKbGI3xixlhOCOxaUJOaZKwbU2EA-Y" />
     
     <title>Lifora Wellness</title>
     </head>
