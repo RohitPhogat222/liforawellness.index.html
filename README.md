@@ -2,13 +2,11 @@
 <html>
 <head>
     <meta name="google-site-verification" content="MGUwoP2SLKxiCjwXP2mdjCLeVUDdKXar8mHVjDe-clA" />
+    
     <title>Lifora Wellness</title>
-</head>
+    </head>
 <body>
-    <h1>Welcome to Lifora Wellness</h1>
-    <p>Researching reusable resources and sustainable products.</p>
-</body>
-</html>
+    ...
 
 
 # Lifora Wellness 🌿
