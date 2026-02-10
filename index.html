@@ -3,108 +3,860 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rohit Phogat | Lifora Wellness</title>
+  <title>Rohit Phogat | Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    body { box-sizing: border-box; }
-    * { font-family: 'Outfit', sans-serif; }
-    .heading-font { font-family: 'Space Grotesk', sans-serif; }
-    .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); }
-    .glass-dark { background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
-    .gradient-bg { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); }
-    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: float 8s ease-in-out infinite; }
-    .blob-1 { width: 400px; height: 400px; background: linear-gradient(135deg, #667eea, #764ba2); top: -100px; left: -100px; }
-    .blob-2 { width: 350px; height: 350px; background: linear-gradient(135deg, #f093fb, #f5576c); bottom: 20%; right: -50px; animation-delay: -4s; }
-    @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -30px) scale(1.05); } 66% { transform: translate(-20px, 20px) scale(0.95); } }
-    .profile-avatar { background: linear-gradient(135deg, #667eea, #764ba2); animation: pulse-glow 3s ease-in-out infinite; }
-    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.4); } 50% { box-shadow: 0 0 50px rgba(102, 126, 234, 0.7); } }
-    .skill-tag:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.2); }
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    .heading-font {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    }
+    
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.6;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      top: -100px;
+      left: -100px;
+    }
+    
+    .blob-2 {
+      width: 350px;
+      height: 350px;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      bottom: 20%;
+      right: -50px;
+      animation-delay: -4s;
+    }
+    
+    .blob-3 {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      bottom: -100px;
+      left: 30%;
+      animation-delay: -2s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+    
+    .gallery-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .gallery-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.4);
+    }
+    
+    .gallery-card:hover .card-overlay {
+      opacity: 1;
+    }
+    
+    .gallery-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .card-overlay {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .skill-tag {
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .upload-zone {
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .upload-zone:hover {
+      border-color: rgba(102, 126, 234, 0.8);
+      background: rgba(102, 126, 234, 0.1);
+    }
+    
+    .pagination-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .pagination-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+    
+    .pagination-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    
+    .search-input {
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .profile-avatar {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.4); }
+      50% { box-shadow: 0 0 50px rgba(102, 126, 234, 0.7); }
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .tab-btn {
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background: rgba(255, 255, 255, 0.2);
+      border-bottom: 2px solid rgba(102, 126, 234, 0.8);
+    }
+
+    .input-field {
+      transition: all 0.3s ease;
+    }
+
+    .input-field:focus {
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    }
+
+    .success-toast {
+      animation: slideIn 0.3s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-backdrop {
+      animation: fadeInBg 0.3s ease forwards;
+    }
+
+    @keyframes fadeInBg {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      animation: scaleIn 0.3s ease forwards;
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
+  <style>@view-transition { navigation: auto; }</style>
  </head>
  <body class="h-full gradient-bg text-white overflow-auto">
-  <div class="min-h-full relative overflow-hidden">
+  <div class="min-h-full relative overflow-hidden"><!-- Animated Blobs -->
    <div class="blob blob-1"></div>
    <div class="blob blob-2"></div>
-   
-   <div id="main-container" class="relative z-10 w-full min-h-full">
-    <header class="glass sticky top-0 z-40">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl profile-avatar flex items-center justify-center"><span class="text-xl font-bold heading-font">RP</span></div>
-        <span class="heading-font font-semibold text-lg">Rohit Phogat</span>
-       </div>
-       <nav class="hidden sm:flex items-center gap-6 text-sm font-medium">
-         <a href="#profile" class="hover:text-purple-300 transition-colors">About</a>
-         <a href="#projects" class="hover:text-purple-300 transition-colors">Lifora Wellness</a>
-         <a href="#contact" class="hover:text-purple-300 transition-colors">Connect</a>
-       </nav>
+   <div class="blob blob-3"></div><!-- Login Modal (Hidden by default) -->
+   <div id="login-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop bg-black/40">
+    <div class="glass modal-content rounded-3xl p-8 sm:p-12 w-full max-w-md">
+     <div class="flex items-center justify-between mb-6">
+      <h2 class="heading-font text-2xl font-bold">Developer Access</h2><button id="close-modal-btn" class="text-white/60 hover:text-white transition-colors">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
      </div>
-    </header>
-
-    <section id="profile" class="py-12 sm:py-20 px-4 sm:px-6">
+     <form id="login-form" class="space-y-4">
+      <div><label class="block text-sm font-medium mb-2">Developer ID</label> <input type="text" id="dev-id-input" placeholder="Enter your unique developer ID" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
+       <p class="text-xs text-white/40 mt-2">Example: dev_rohit_001</p>
+      </div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 transition-all flex items-center justify-center gap-2"> <span>🔓</span> <span>Access Dashboard</span> </button>
+     </form>
+     <p class="text-center text-white/40 text-sm mt-6">Your customization dashboard is <br>
+      secured with your unique ID</p>
+    </div>
+   </div><!-- Main Container -->
+   <div id="main-container" class="relative z-10 w-full min-h-full"><!-- Header -->
+    <header class="glass sticky top-0 z-40">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex items-center justify-between">
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl profile-avatar flex items-center justify-center"><span class="text-xl font-bold heading-font">RP</span>
+        </div><span class="heading-font font-semibold text-lg hidden sm:block" id="header-name">Rohit Phogat</span>
+       </div>
+       <nav class="flex items-center gap-2 sm:gap-4"><!-- Developer Control Panel (Hidden until login) -->
+        <div id="dev-panel" class="hidden flex items-center gap-3">
+         <div class="flex items-center gap-2 text-xs text-white/60"><span class="w-2 h-2 bg-green-400 rounded-full"></span> <span id="dev-id-display">dev_user</span>
+         </div><button id="logout-btn" class="glass-dark px-4 py-2 rounded-lg text-sm hover:bg-white/10 transition-colors flex items-center gap-2"> <span>🚪</span> <span class="hidden sm:inline">Logout</span> </button>
+        </div><!-- Login Button (Visible until login) --> <button id="open-login-btn" class="glass-dark px-4 py-2 rounded-lg text-sm hover:bg-white/10 transition-colors flex items-center gap-2"> <span>🔐</span> <span class="hidden sm:inline">Developer Login</span> </button>
+       </nav>
+      </div>
+     </div>
+    </header><!-- Toggle Buttons (Hidden until login) -->
+    <div id="tab-section" class="glass sticky top-16 z-30 hidden">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+      <div class="flex gap-2"><button id="view-btn" class="tab-btn active glass-dark px-4 sm:px-6 py-2 rounded-lg text-sm font-medium transition-all"> 👁️ <span class="hidden sm:inline">View Site</span> </button> <button id="customize-btn" class="tab-btn glass-dark px-4 sm:px-6 py-2 rounded-lg text-sm font-medium transition-all"> ⚙️ <span class="hidden sm:inline">Customize</span> </button>
+      </div>
+     </div>
+    </div><!-- View Site Mode (Visible by default) -->
+    <div id="view-mode" class="min-h-full"><!-- Hero Profile Section -->
+     <section id="profile" class="py-12 sm:py-20 px-4 sm:px-6">
       <div class="max-w-7xl mx-auto">
-       <div class="glass rounded-3xl p-6 sm:p-10">
-        <div class="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
+       <div class="glass rounded-3xl p-6 sm:p-10 fade-in">
+        <div class="flex flex-col lg:flex-row gap-8 items-center lg:items-start"><!-- Avatar -->
          <div class="flex-shrink-0">
-          <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl profile-avatar flex items-center justify-center text-5xl sm:text-6xl font-bold heading-font">RP</div>
-         </div>
+          <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl profile-avatar flex items-center justify-center text-5xl sm:text-6xl font-bold heading-font">
+           RP
+          </div>
+         </div><!-- Profile Info -->
          <div class="flex-1 text-center lg:text-left">
-          <h1 class="heading-font text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">Rohit Phogat</h1>
-          <p class="text-lg sm:text-xl text-white/70 mb-4">B.Tech in CS (AI & ML) | Founder of Lifora Wellness</p>
-          <p class="text-white/60 max-w-2xl mb-6 leading-relaxed">
-            Based in Charkhi Dadri, I am a Computer Science professional specializing in Artificial Intelligence and Machine Learning. 
-            Through my company, <strong>Lifora Wellness</strong>, I lead research into reusable resources and sustainable products, 
-            using data-driven experimentation to create a greener future.
-          </p>
-          <div class="flex flex-wrap gap-2 justify-center lg:justify-start mb-6">
-            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🤖 AI & ML</span>
-            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🌐 Web Development</span>
-            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🌿 Sustainability</span>
-            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">📊 Data Analysis</span>
-            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🐧 Linux/Kubuntu</span>
+          <h1 class="heading-font text-3xl sm:text-4xl lg:text-5xl font-bold mb-2" id="profile-name">Rohit Phogat</h1>
+          <p class="text-lg sm:text-xl text-white/70 mb-4" id="profile-title">Creative Developer &amp; Digital Artist</p>
+          <p class="text-white/60 max-w-2xl mb-6 leading-relaxed" id="profile-bio">Passionate about blending technology with art. Specializing in anime aesthetics, sustainable design, and creating immersive digital experiences that inspire and captivate.</p><!-- Skills -->
+          <div class="flex flex-wrap gap-2 justify-center lg:justify-start mb-6"><span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🎨 Digital Art</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🌿 Sustainability</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">⚡ Web Dev</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🎬 Anime</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">✨ UI/UX</span>
+          </div><!-- Stats -->
+          <div class="flex gap-8 justify-center lg:justify-start">
+           <div class="text-center">
+            <div class="heading-font text-2xl sm:text-3xl font-bold">
+             50+
+            </div>
+            <div class="text-white/50 text-sm">
+             Projects
+            </div>
+           </div>
+           <div class="text-center">
+            <div class="heading-font text-2xl sm:text-3xl font-bold" id="stat-images">
+             0
+            </div>
+            <div class="text-white/50 text-sm">
+             Gallery Items
+            </div>
+           </div>
+           <div class="text-center">
+            <div class="heading-font text-2xl sm:text-3xl font-bold">
+             3+
+            </div>
+            <div class="text-white/50 text-sm">
+             Years Exp
+            </div>
+           </div>
           </div>
          </div>
         </div>
        </div>
       </div>
-    </section>
-
-    <section id="projects" class="py-12 px-4 sm:px-6">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="heading-font text-2xl sm:text-3xl font-bold mb-8">Mission: Lifora Wellness</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="glass p-8 rounded-2xl">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><span>🔍</span> Research & Development</h3>
-            <p class="text-white/60">Focused on discovering reusable resources through rigorous data-driven experimentation to minimize waste.</p>
-          </div>
-          <div class="glass p-8 rounded-2xl">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><span>🌱</span> Sustainable Products</h3>
-            <p class="text-white/60">Crafting innovative, eco-friendly solutions that bridge the gap between technology and environmental preservation.</p>
-          </div>
+     </section><!-- Gallery Section -->
+     <section id="gallery" class="py-12 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto"><!-- Gallery Header -->
+       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+        <h2 class="heading-font text-2xl sm:text-3xl font-bold" id="gallery-title">🖼️ Multimedia Gallery</h2><!-- Search Bar -->
+        <div class="relative w-full sm:w-80"><input type="text" id="search-input" placeholder="Search images by name..." class="search-input w-full glass-dark rounded-xl px-5 py-3 pl-12 text-white placeholder-white/40 outline-none">
+         <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+         </svg>
         </div>
+       </div><!-- Gallery Grid -->
+       <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8"><!-- Images will be rendered here -->
+       </div><!-- Empty State -->
+       <div id="empty-state" class="glass rounded-2xl p-12 text-center hidden">
+        <div class="w-24 h-24 rounded-full glass-dark flex items-center justify-center mx-auto mb-6">
+         <svg class="w-12 h-12 text-white/40" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+         </svg>
+        </div>
+        <h3 class="heading-font text-xl font-semibold mb-2" id="empty-title">No images found</h3>
+        <p class="text-white/50" id="empty-message">Upload your first image to start building your gallery!</p>
+       </div><!-- Pagination -->
+       <div id="pagination" class="flex items-center justify-center gap-2 hidden"><button id="prev-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+         </svg></button>
+        <div id="page-numbers" class="flex gap-1"></div><button id="next-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center">
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+         </svg></button>
+       </div>
       </div>
-    </section>
-
-    <section id="contact" class="py-12 px-4 sm:px-6">
+     </section><!-- Contact Section -->
+     <section id="contact" class="py-12 px-4 sm:px-6">
       <div class="max-w-3xl mx-auto">
        <div class="glass rounded-3xl p-6 sm:p-10 text-center">
         <h2 class="heading-font text-2xl sm:text-3xl font-bold mb-4">Let's Connect</h2>
-        <p class="text-white/60 mb-8">Interested in AI, Sustainability, or collaborating on Lifora Wellness? Reach out!</p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="mailto:your-email@example.com" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"><span>📧</span> Email</a>
-          <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"><span>💼</span> LinkedIn</a>
-          <a href="https://github.com/your-username" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"><span>🐙</span> GitHub</a>
+        <p class="text-white/60 mb-8">Interested in collaborating or just want to say hi? Feel free to reach out!</p>
+        <div class="flex flex-wrap justify-center gap-4"><a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>📧</span> Email </a> <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>💼</span> LinkedIn </a> <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>🐙</span> GitHub </a> <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>🐦</span> Twitter </a>
         </div>
        </div>
       </div>
-    </section>
-
-    <footer class="glass mt-8 p-8 text-center text-white/40 text-sm">
-      <p>© 2026 Rohit Phogat | Lifora Wellness. Created with passion for tech & sustainability.</p>
-    </footer>
+     </section><!-- Footer -->
+     <footer class="glass mt-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+         <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl profile-avatar flex items-center justify-center"><span class="text-lg font-bold heading-font">RP</span>
+          </div><span class="heading-font font-semibold" id="footer-name">Rohit Phogat</span>
+         </div>
+         <p class="text-white/50 text-sm">Creating digital experiences with passion and purpose.</p>
+        </div>
+        <div>
+         <h4 class="heading-font font-semibold mb-4">Quick Links</h4>
+         <div class="flex flex-col gap-2"><a href="#profile" class="text-white/50 hover:text-white transition-colors text-sm">Profile</a> <a href="#gallery" class="text-white/50 hover:text-white transition-colors text-sm">Gallery</a> <a href="#contact" class="text-white/50 hover:text-white transition-colors text-sm">Contact</a>
+         </div>
+        </div>
+        <div>
+         <h4 class="heading-font font-semibold mb-4">Focus Areas</h4>
+         <div class="flex flex-wrap gap-2"><span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Anime Art</span> <span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Sustainability</span> <span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Web Design</span>
+         </div>
+        </div>
+       </div>
+       <div class="border-t border-white/10 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-white/40 text-sm">© 2024 Rohit Phogat. All rights reserved.</p>
+        <p class="text-white/40 text-sm flex items-center gap-2">Made with <span class="text-red-400">❤️</span> for creativity &amp; sustainability</p>
+       </div>
+      </div>
+     </footer>
+    </div><!-- Customize Mode (Hidden until login) -->
+    <div id="customize-mode" class="min-h-full hidden"><!-- Success Toast -->
+     <div id="success-toast" class="fixed top-20 right-4 glass rounded-lg px-6 py-4 flex items-center gap-3 hidden z-50 success-toast">
+      <svg class="w-5 h-5 text-green-400" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg><span id="toast-message">Settings saved!</span>
+     </div>
+     <section class="py-12 px-4 sm:px-6">
+      <div class="max-w-4xl mx-auto"><!-- Profile Customization -->
+       <div class="glass rounded-3xl p-6 sm:p-10 mb-6">
+        <h2 class="heading-font text-2xl font-bold mb-6 flex items-center gap-3"><span>👤</span> Profile Information</h2>
+        <div class="space-y-6">
+         <div><label class="block text-sm font-medium mb-2">Your Name</label> <input type="text" id="customize-name" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" placeholder="Enter your full name">
+         </div>
+         <div><label class="block text-sm font-medium mb-2">Professional Title</label> <input type="text" id="customize-title" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" placeholder="e.g., Creative Developer &amp; Digital Artist">
+         </div>
+         <div><label class="block text-sm font-medium mb-2">Bio</label> <textarea id="customize-bio" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none resize-none" placeholder="Tell us about yourself..." rows="4"></textarea>
+         </div>
+        </div>
+       </div><!-- Gallery Customization -->
+       <div class="glass rounded-3xl p-6 sm:p-10 mb-6">
+        <h2 class="heading-font text-2xl font-bold mb-6 flex items-center gap-3"><span>🖼️</span> Gallery Settings</h2>
+        <div class="space-y-6">
+         <div><label class="block text-sm font-medium mb-2">Gallery Title</label> <input type="text" id="customize-gallery-title" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" placeholder="e.g., 🖼️ Multimedia Gallery">
+         </div><!-- Upload Zone for Gallery -->
+         <div><label class="block text-sm font-medium mb-4">Upload Images</label> <label class="upload-zone rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer block"> <input type="file" id="file-input" accept="image/*" multiple class="hidden">
+           <div class="w-16 h-16 rounded-full glass-dark flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+           </div><p class="text-white/70 text-center"><span class="text-white font-medium">Click to upload</span> or drag and drop</p><p class="text-white/40 text-sm mt-1">PNG, JPG, GIF up to 10MB</p></label>
+         </div><!-- Gallery Preview -->
+         <div id="gallery-preview" class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6 hidden">
+          <h3 class="col-span-full text-sm font-medium">Uploaded Images</h3>
+         </div>
+         <div id="gallery-stats" class="glass-dark rounded-lg p-4 text-center">
+          <p class="text-sm text-white/70">Total Images: <span class="font-bold text-white" id="preview-count">0</span></p>
+         </div>
+        </div>
+       </div><!-- Save Button -->
+       <div class="flex gap-4"><button id="save-customize-btn" class="flex-1 glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 transition-all flex items-center justify-center gap-2"> <span>💾</span> <span>Save All Changes</span> </button> <button id="clear-gallery-btn" class="glass-dark px-6 py-3 rounded-lg font-semibold hover:bg-red-500/20 transition-all flex items-center gap-2"> <span>🗑️</span> <span>Clear All</span> </button>
+       </div>
+      </div>
+     </section>
+    </div>
    </div>
   </div>
- </body>
-</html>
+  <script>
+    // ==================== STATE MANAGEMENT ====================
+    let currentDevId = '';
+    let allProfiles = {};
+    let currentProfile = null;
+    let images = [];
+    let currentPage = 1;
+    const imagesPerPage = 8;
+    let searchQuery = '';
+    let isLoggedIn = false;
 
+    // ==================== DATA SDK HANDLER ====================
+    const dataHandler = {
+      onDataChanged(data) {
+        allProfiles = {};
+        data.forEach(profile => {
+          allProfiles[profile.dev_id] = profile;
+        });
+      }
+    };
+
+    // ==================== DOM ELEMENTS ====================
+    const loginModal = document.getElementById('login-modal');
+    const loginForm = document.getElementById('login-form');
+    const devIdInput = document.getElementById('dev-id-input');
+    const openLoginBtn = document.getElementById('open-login-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const devPanel = document.getElementById('dev-panel');
+    const logoutBtn = document.getElementById('logout-btn');
+    const tabSection = document.getElementById('tab-section');
+    const devIdDisplay = document.getElementById('dev-id-display');
+    const viewBtn = document.getElementById('view-btn');
+    const customizeBtn = document.getElementById('customize-btn');
+    const viewMode = document.getElementById('view-mode');
+    const customizeMode = document.getElementById('customize-mode');
+
+    // ==================== LOGIN MODAL LOGIC ====================
+    openLoginBtn.addEventListener('click', () => {
+      loginModal.classList.remove('hidden');
+      devIdInput.focus();
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      loginModal.classList.add('hidden');
+    });
+
+    loginModal.addEventListener('click', (e) => {
+      if (e.target === loginModal) {
+        loginModal.classList.add('hidden');
+      }
+    });
+
+    // ==================== LOGIN FORM SUBMISSION ====================
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const devId = devIdInput.value.trim();
+      
+      if (!devId) {
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'text-red-400 text-sm mt-2';
+        errorMsg.textContent = 'Please enter a Developer ID';
+        loginForm.appendChild(errorMsg);
+        setTimeout(() => errorMsg.remove(), 3000);
+        return;
+      }
+
+      currentDevId = devId;
+      isLoggedIn = true;
+      devIdDisplay.textContent = devId;
+
+      // Check if profile exists
+      if (allProfiles[devId]) {
+        loadProfileData(allProfiles[devId]);
+      } else {
+        // Create new profile
+        const newProfile = {
+          dev_id: devId,
+          profile_name: 'Rohit Phogat',
+          profile_title: 'Creative Developer & Digital Artist',
+          profile_bio: 'Passionate about blending technology with art. Specializing in anime aesthetics, sustainable design, and creating immersive digital experiences that inspire and captivate.',
+          gallery_title: '🖼️ Multimedia Gallery',
+          background_color: '#302b63',
+          text_color: '#ffffff',
+          accent_color: '#667eea',
+          secondary_color: '#764ba2',
+          surface_color: 'rgba(255, 255, 255, 0.1)',
+          font_family: 'Outfit',
+          font_size: 16,
+          created_at: new Date().toISOString()
+        };
+
+        const result = await window.dataSdk.create(newProfile);
+        if (result.isOk) {
+          currentProfile = newProfile;
+          allProfiles[devId] = newProfile;
+        }
+      }
+
+      // Update UI
+      loginModal.classList.add('hidden');
+      openLoginBtn.classList.add('hidden');
+      devPanel.classList.remove('hidden');
+      tabSection.classList.remove('hidden');
+      initializeGallery();
+      devIdInput.value = '';
+    });
+
+    // ==================== LOGOUT ====================
+    logoutBtn.addEventListener('click', () => {
+      currentDevId = '';
+      currentProfile = null;
+      images = [];
+      isLoggedIn = false;
+      
+      openLoginBtn.classList.remove('hidden');
+      devPanel.classList.add('hidden');
+      tabSection.classList.add('hidden');
+      viewMode.classList.remove('hidden');
+      customizeMode.classList.add('hidden');
+      viewBtn.classList.add('active');
+      customizeBtn.classList.remove('active');
+      
+      renderGallery();
+    });
+
+    // ==================== PROFILE DATA LOADING ====================
+    function loadProfileData(profile) {
+      currentProfile = profile;
+
+      // Update view mode
+      document.getElementById('profile-name').textContent = profile.profile_name;
+      document.getElementById('profile-title').textContent = profile.profile_title;
+      document.getElementById('profile-bio').textContent = profile.profile_bio;
+      document.getElementById('header-name').textContent = profile.profile_name;
+      document.getElementById('footer-name').textContent = profile.profile_name;
+      document.getElementById('gallery-title').textContent = profile.gallery_title;
+
+      // Update customize mode
+      document.getElementById('customize-name').value = profile.profile_name;
+      document.getElementById('customize-title').value = profile.profile_title;
+      document.getElementById('customize-bio').value = profile.profile_bio;
+      document.getElementById('customize-gallery-title').value = profile.gallery_title;
+    }
+
+    // ==================== TAB SWITCHING ====================
+    viewBtn.addEventListener('click', () => {
+      if (!isLoggedIn) return;
+      viewMode.classList.remove('hidden');
+      customizeMode.classList.add('hidden');
+      viewBtn.classList.add('active');
+      customizeBtn.classList.remove('active');
+    });
+
+    customizeBtn.addEventListener('click', () => {
+      if (!isLoggedIn) return;
+      customizeMode.classList.remove('hidden');
+      viewMode.classList.add('hidden');
+      customizeBtn.classList.add('active');
+      viewBtn.classList.remove('active');
+    });
+
+    // ==================== GALLERY LOGIC ====================
+    const fileInput = document.getElementById('file-input');
+    const galleryGrid = document.getElementById('gallery-grid');
+    const emptyState = document.getElementById('empty-state');
+    const pagination = document.getElementById('pagination');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageNumbers = document.getElementById('page-numbers');
+    const searchInput = document.getElementById('search-input');
+    const statImages = document.getElementById('stat-images');
+    const galleryPreview = document.getElementById('gallery-preview');
+    const previewCount = document.getElementById('preview-count');
+    const successToast = document.getElementById('success-toast');
+    const toastMessage = document.getElementById('toast-message');
+    const saveCustomizeBtn = document.getElementById('save-customize-btn');
+    const clearGalleryBtn = document.getElementById('clear-gallery-btn');
+
+    function initializeGallery() {
+      images = [];
+      currentPage = 1;
+      renderGallery();
+      updateStats();
+    }
+
+    fileInput.addEventListener('change', (e) => {
+      const files = Array.from(e.target.files);
+      files.forEach(file => {
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            images.push({
+              id: Date.now() + Math.random(),
+              name: file.name.replace(/\.[^/.]+$/, ''),
+              src: event.target.result,
+              uploadedAt: new Date().toISOString()
+            });
+            currentPage = 1;
+            renderGallery();
+            renderPreview();
+            updateStats();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      fileInput.value = '';
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase();
+      currentPage = 1;
+      renderGallery();
+    });
+
+    function getFilteredImages() {
+      if (!searchQuery) return images;
+      return images.filter(img => img.name.toLowerCase().includes(searchQuery));
+    }
+
+    function renderGallery() {
+      const filtered = getFilteredImages();
+      const totalPages = Math.ceil(filtered.length / imagesPerPage);
+      const startIndex = (currentPage - 1) * imagesPerPage;
+      const endIndex = startIndex + imagesPerPage;
+      const pageImages = filtered.slice(startIndex, endIndex);
+
+      if (filtered.length === 0) {
+        galleryGrid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        pagination.classList.add('hidden');
+
+        const emptyTitle = document.getElementById('empty-title');
+        const emptyMessage = document.getElementById('empty-message');
+
+        if (searchQuery && images.length > 0) {
+          emptyTitle.textContent = 'No matches found';
+          emptyMessage.textContent = `No images match "${searchQuery}". Try a different search term.`;
+        } else {
+          emptyTitle.textContent = 'No images found';
+          emptyMessage.textContent = 'Upload your first image to start building your gallery!';
+        }
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      galleryGrid.innerHTML = pageImages.map((img, index) => `
+        <div class="gallery-card glass rounded-2xl overflow-hidden fade-in" style="animation-delay: ${index * 0.05}s" data-id="${img.id}">
+          <div class="relative aspect-square overflow-hidden">
+            <img src="${img.src}" alt="${img.name}" class="w-full h-full object-cover transition-transform duration-500" loading="lazy">
+            <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
+              <h3 class="font-semibold text-sm truncate mb-1">${img.name}</h3>
+              <p class="text-white/60 text-xs">${formatDate(img.uploadedAt)}</p>
+            </div>
+            <button 
+              class="absolute top-3 right-3 w-8 h-8 rounded-lg glass-dark flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/50"
+              onclick="deleteImage('${img.id}')"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.gallery-card').forEach(card => {
+        const deleteBtn = card.querySelector('button');
+        card.addEventListener('mouseenter', () => deleteBtn.style.opacity = '1');
+        card.addEventListener('mouseleave', () => deleteBtn.style.opacity = '0');
+      });
+
+      if (totalPages > 1) {
+        pagination.classList.remove('hidden');
+        renderPagination(totalPages);
+      } else {
+        pagination.classList.add('hidden');
+      }
+    }
+
+    function renderPagination(totalPages) {
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+
+      let pages = [];
+      if (totalPages <= 5) {
+        pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+      } else {
+        if (currentPage <= 3) {
+          pages = [1, 2, 3, '...', totalPages];
+        } else if (currentPage >= totalPages - 2) {
+          pages = [1, '...', totalPages - 2, totalPages - 1, totalPages];
+        } else {
+          pages = [1, '...', currentPage, '...', totalPages];
+        }
+      }
+
+      pageNumbers.innerHTML = pages.map(page => {
+        if (page === '...') {
+          return `<span class="w-10 h-10 flex items-center justify-center text-white/40">...</span>`;
+        }
+        const isActive = page === currentPage;
+        return `
+          <button 
+            class="pagination-btn w-10 h-10 rounded-xl flex items-center justify-center ${isActive ? 'glass bg-white/20' : 'glass-dark'}"
+            onclick="goToPage(${page})"
+          >
+            ${page}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderPreview() {
+      if (images.length === 0) {
+        galleryPreview.classList.add('hidden');
+        return;
+      }
+
+      galleryPreview.classList.remove('hidden');
+      const previewHTML = images.slice(0, 6).map(img => `
+        <div class="relative aspect-square rounded-lg overflow-hidden group">
+          <img src="${img.src}" alt="${img.name}" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+            <button onclick="deleteImage('${img.id}')" class="text-white hover:text-red-400">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      galleryPreview.innerHTML = '<h3 class="col-span-full text-sm font-medium">Uploaded Images</h3>' + previewHTML;
+      previewCount.textContent = images.length;
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      renderGallery();
+      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.deleteImage = function(id) {
+      images = images.filter(img => img.id !== parseFloat(id));
+      const totalPages = Math.ceil(getFilteredImages().length / imagesPerPage);
+      if (currentPage > totalPages && totalPages > 0) {
+        currentPage = totalPages;
+      }
+      renderGallery();
+      renderPreview();
+      updateStats();
+    };
+
+    function updateStats() {
+      statImages.textContent = images.length;
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    // ==================== SAVE CHANGES ====================
+    saveCustomizeBtn.addEventListener('click', async () => {
+      if (!currentProfile) return;
+
+      const updatedProfile = {
+        ...currentProfile,
+        profile_name: document.getElementById('customize-name').value || currentProfile.profile_name,
+        profile_title: document.getElementById('customize-title').value || currentProfile.profile_title,
+        profile_bio: document.getElementById('customize-bio').value || currentProfile.profile_bio,
+        gallery_title: document.getElementById('customize-gallery-title').value || currentProfile.gallery_title
+      };
+
+      saveCustomizeBtn.disabled = true;
+      saveCustomizeBtn.innerHTML = '<svg class="w-5 h-5" style="animation: spin 1s linear infinite" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg> Saving...';
+
+      const result = await window.dataSdk.update(updatedProfile);
+      
+      saveCustomizeBtn.disabled = false;
+      saveCustomizeBtn.innerHTML = '<span>💾</span> <span>Save All Changes</span>';
+
+      if (result.isOk) {
+        currentProfile = updatedProfile;
+        allProfiles[currentDevId] = updatedProfile;
+        loadProfileData(updatedProfile);
+        
+        toastMessage.textContent = 'Profile settings saved successfully!';
+        successToast.classList.remove('hidden');
+        setTimeout(() => successToast.classList.add('hidden'), 3000);
+      }
+    });
+
+    clearGalleryBtn.addEventListener('click', () => {
+      if (images.length === 0) {
+        toastMessage.textContent = 'No images to clear!';
+        successToast.classList.remove('hidden');
+        setTimeout(() => successToast.classList.add('hidden'), 3000);
+        return;
+      }
+      
+      if (confirm('Are you sure you want to clear all images? This cannot be undone.')) {
+        images = [];
+        currentPage = 1;
+        renderGallery();
+        renderPreview();
+        updateStats();
+
+        toastMessage.textContent = 'All images cleared!';
+        successToast.classList.remove('hidden');
+        setTimeout(() => successToast.classList.add('hidden'), 3000);
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) goToPage(currentPage - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(getFilteredImages().length / imagesPerPage);
+      if (currentPage < totalPages) goToPage(currentPage + 1);
+    });
+
+    // ==================== DATA SDK INITIALIZATION ====================
+    (async () => {
+      const initResult = await window.dataSdk.init(dataHandler);
+      if (!initResult.isOk) {
+        console.error('Failed to initialize Data SDK');
+      }
+      renderGallery();
+    })();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cbcfb34b21eae62',t:'MTc3MDc0MDkyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
