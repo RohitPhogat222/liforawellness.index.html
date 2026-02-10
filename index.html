@@ -1,301 +1,110 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lifora Wellness | Anime & Innovation</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.25);
-            --glass-blur: 15px;
-            --accent: #2ecc71;
-            --accent-hover: #27ae60;
-            --danger: #e74c3c;
-            --text-main: #ffffff;
-            --transition-speed: 0.3s;
-        }
-
-        * { box-sizing: border-box; } /* Fixes the "shifted to right" button issue */
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            /* CHANGED: Reduced overlay from 0.7 to 0.4 for better background visibility */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://raw.githubusercontent.com/RohitPhogat222/lifora-wellness.github.io/main/Screenshot%202025-03-07%20193036.png') no-repeat center center fixed;
-            background-size: cover;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            flex: 1;
-        }
-
-        /* STICKY UPLOAD OPTION (Right Side) */
-        .sticky-upload {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .side-btn {
-            background: var(--accent);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .side-btn:hover { transform: scale(1.1); background: var(--accent-hover); }
-
-        header { text-align: center; margin-bottom: 50px; }
-        h1 { font-size: 3.5rem; letter-spacing: 5px; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
-        h1 span { color: var(--accent); }
-
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-        }
-
-        /* GALLERY & CARDS */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* BUTTON FIX: Proper Box Alignment */
-        .btn {
-            background: var(--accent);
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%; /* Keeps it inside the box properly */
-            transition: 0.3s;
-        }
-
-        .btn-remove { background: var(--danger); margin-top: 10px; }
-
-        /* PAGINATION STYLES */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 40px 0;
-        }
-
-        .page-num {
-            padding: 10px 18px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .page-num.active { background: var(--accent); border-color: var(--accent); }
-
-        /* FOOTER DETAILS */
-        footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 60px 20px;
-            border-top: 4px solid var(--accent);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-col h3 { color: var(--accent); margin-bottom: 20px; }
-        .footer-col p { line-height: 1.6; color: #ccc; }
-
-        @media (max-width: 768px) {
-            .sticky-upload { bottom: 20px; top: auto; right: 20px; transform: none; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="sticky-upload">
-    <div class="side-btn" onclick="triggerUpload()" title="Upload Image">
-        <i class="fas fa-plus"></i>
-    </div>
-</div>
-
-<div class="container">
-    <header>
-        <h1>Lifora <span>Wellness</span></h1>
-        <p>Innovation | Sustainability | Aesthetics</p>
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohit Phogat | Lifora Wellness</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { box-sizing: border-box; }
+    * { font-family: 'Outfit', sans-serif; }
+    .heading-font { font-family: 'Space Grotesk', sans-serif; }
+    .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); }
+    .glass-dark { background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .gradient-bg { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); }
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: float 8s ease-in-out infinite; }
+    .blob-1 { width: 400px; height: 400px; background: linear-gradient(135deg, #667eea, #764ba2); top: -100px; left: -100px; }
+    .blob-2 { width: 350px; height: 350px; background: linear-gradient(135deg, #f093fb, #f5576c); bottom: 20%; right: -50px; animation-delay: -4s; }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -30px) scale(1.05); } 66% { transform: translate(-20px, 20px) scale(0.95); } }
+    .profile-avatar { background: linear-gradient(135deg, #667eea, #764ba2); animation: pulse-glow 3s ease-in-out infinite; }
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.4); } 50% { box-shadow: 0 0 50px rgba(102, 126, 234, 0.7); } }
+    .skill-tag:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.2); }
+  </style>
+ </head>
+ <body class="h-full gradient-bg text-white overflow-auto">
+  <div class="min-h-full relative overflow-hidden">
+   <div class="blob blob-1"></div>
+   <div class="blob blob-2"></div>
+   
+   <div id="main-container" class="relative z-10 w-full min-h-full">
+    <header class="glass sticky top-0 z-40">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl profile-avatar flex items-center justify-center"><span class="text-xl font-bold heading-font">RP</span></div>
+        <span class="heading-font font-semibold text-lg">Rohit Phogat</span>
+       </div>
+       <nav class="hidden sm:flex items-center gap-6 text-sm font-medium">
+         <a href="#profile" class="hover:text-purple-300 transition-colors">About</a>
+         <a href="#projects" class="hover:text-purple-300 transition-colors">Lifora Wellness</a>
+         <a href="#contact" class="hover:text-purple-300 transition-colors">Connect</a>
+       </nav>
+     </div>
     </header>
 
-    <input type="file" id="fileInput" accept="image/*" multiple style="display:none">
-
-    <div class="gallery-grid" id="gallery">
+    <section id="profile" class="py-12 sm:py-20 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+       <div class="glass rounded-3xl p-6 sm:p-10">
+        <div class="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
+         <div class="flex-shrink-0">
+          <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl profile-avatar flex items-center justify-center text-5xl sm:text-6xl font-bold heading-font">RP</div>
+         </div>
+         <div class="flex-1 text-center lg:text-left">
+          <h1 class="heading-font text-3xl sm:text-4xl lg:text-5xl font-bold mb-2">Rohit Phogat</h1>
+          <p class="text-lg sm:text-xl text-white/70 mb-4">B.Tech in CS (AI & ML) | Founder of Lifora Wellness</p>
+          <p class="text-white/60 max-w-2xl mb-6 leading-relaxed">
+            Based in Charkhi Dadri, I am a Computer Science professional specializing in Artificial Intelligence and Machine Learning. 
+            Through my company, <strong>Lifora Wellness</strong>, I lead research into reusable resources and sustainable products, 
+            using data-driven experimentation to create a greener future.
+          </p>
+          <div class="flex flex-wrap gap-2 justify-center lg:justify-start mb-6">
+            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🤖 AI & ML</span>
+            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🌐 Web Development</span>
+            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🌿 Sustainability</span>
+            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">📊 Data Analysis</span>
+            <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🐧 Linux/Kubuntu</span>
+          </div>
+         </div>
         </div>
+       </div>
+      </div>
+    </section>
 
-    <div class="pagination" id="pagination"></div>
-</div>
-
-<footer>
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h3>About Lifora Wellness</h3>
-            <p>Lifora Wellness is a visionary platform blending the world of high-end anime aesthetics with data-driven sustainability research. We believe that visual inspiration can drive real-world ecological change.</p>
+    <section id="projects" class="py-12 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="heading-font text-2xl sm:text-3xl font-bold mb-8">Mission: Lifora Wellness</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="glass p-8 rounded-2xl">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><span>🔍</span> Research & Development</h3>
+            <p class="text-white/60">Focused on discovering reusable resources through rigorous data-driven experimentation to minimize waste.</p>
+          </div>
+          <div class="glass p-8 rounded-2xl">
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><span>🌱</span> Sustainable Products</h3>
+            <p class="text-white/60">Crafting innovative, eco-friendly solutions that bridge the gap between technology and environmental preservation.</p>
+          </div>
         </div>
-        <div class="footer-col">
-            <h3>The Founder</h3>
-            <p><strong>Rohit Phogat</strong><br>
-            A Computer Science Engineer specializing in AI and Machine Learning at K.R. Mangalam University. Rohit focuses on creating intelligent systems that promote sustainable resource management and innovative digital experiences.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="py-12 px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto">
+       <div class="glass rounded-3xl p-6 sm:p-10 text-center">
+        <h2 class="heading-font text-2xl sm:text-3xl font-bold mb-4">Let's Connect</h2>
+        <p class="text-white/60 mb-8">Interested in AI, Sustainability, or collaborating on Lifora Wellness? Reach out!</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="mailto:your-email@example.com" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"><span>📧</span> Email</a>
+          <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"><span>💼</span> LinkedIn</a>
+          <a href="https://github.com/your-username" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"><span>🐙</span> GitHub</a>
         </div>
-        <div class="footer-col">
-            <h3>Contact & Social</h3>
-            <p>Email: contact@liforawellness.com<br>
-            Location: Haryana, India</p>
-            <div style="margin-top: 15px;">
-                <a href="#" style="color: var(--accent); font-size: 1.5rem; margin-right: 15px;"><i class="fab fa-linkedin"></i></a>
-                <a href="#" style="color: var(--accent); font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-            </div>
-        </div>
-    </div>
-    <div style="text-align: center; margin-top: 40px; opacity: 0.5;">
-        &copy; 2026 Lifora Wellness by Rohit Phogat.
-    </div>
-</footer>
+       </div>
+      </div>
+    </section>
 
-<script>
-    let images = [
-        { name: "Founder Pick 1", url: "https://via.placeholder.com/400x500/2ecc71/ffffff?text=Nature+1" },
-        { name: "Founder Pick 2", url: "https://via.placeholder.com/400x500/3498db/ffffff?text=Nature+2" }
-    ];
-    
-    let currentPage = 1;
-    const itemsPerPage = 6;
-
-    const fileInput = document.getElementById('fileInput');
-    const gallery = document.getElementById('gallery');
-    const pagination = document.getElementById('pagination');
-
-    function triggerUpload() { fileInput.click(); }
-
-    fileInput.addEventListener('change', function(e) {
-        const files = Array.from(e.target.files);
-        files.forEach(file => {
-            if (file.type.startsWith('image/')) {
-                const url = URL.createObjectURL(file);
-                images.unshift({ name: file.name, url: url, custom: true });
-            }
-        });
-        currentPage = 1;
-        renderGallery();
-    });
-
-    function renderGallery() {
-        gallery.innerHTML = '';
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const paginatedItems = images.slice(start, end);
-
-        paginatedItems.forEach((imgObj, index) => {
-            const actualIndex = start + index;
-            const card = document.createElement('div');
-            card.className = 'card glass-panel';
-            card.innerHTML = `
-                <img src="${imgObj.url}" alt="${imgObj.name}">
-                <div style="font-weight:600; margin-bottom:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
-                    ${imgObj.name}
-                </div>
-                <a href="${imgObj.url}" download="${imgObj.name}" class="btn">
-                    <i class="fas fa-download"></i> Download
-                </a>
-                ${imgObj.custom ? `<button class="btn btn-remove" onclick="removeImage(${actualIndex})">Remove</button>` : ''}
-            `;
-            gallery.appendChild(card);
-        });
-
-        renderPagination();
-    }
-
-    function renderPagination() {
-        pagination.innerHTML = '';
-        const pageCount = Math.ceil(images.length / itemsPerPage);
-        
-        if (pageCount <= 1) return;
-
-        for (let i = 1; i <= pageCount; i++) {
-            const btn = document.createElement('div');
-            btn.className = `page-num ${i === currentPage ? 'active' : ''}`;
-            btn.innerText = i;
-            btn.onclick = () => {
-                currentPage = i;
-                renderGallery();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-            pagination.appendChild(btn);
-        }
-    }
-
-    function removeImage(index) {
-        images.splice(index, 1);
-        renderGallery();
-    }
-
-    // Initial Load
-    renderGallery();
-</script>
-
-</body>
+    <footer class="glass mt-8 p-8 text-center text-white/40 text-sm">
+      <p>© 2026 Rohit Phogat | Lifora Wellness. Created with passion for tech & sustainability.</p>
+    </footer>
+   </div>
+  </div>
+ </body>
 </html>
+
