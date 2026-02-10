@@ -1,376 +1,300 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lifora Wellness | Anime Collection</title>
+    <title>Lifora Wellness | Anime & Innovation</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* CSS VARIABLES: Theming and Consistency */
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-blur: 12px;
-            --accent: #2ecc71;       /* Emerald Green for Wellness */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --glass-blur: 15px;
+            --accent: #2ecc71;
             --accent-hover: #27ae60;
-            --danger: #e74c3c;       /* Red for Remove actions */
+            --danger: #e74c3c;
             --text-main: #ffffff;
-            --text-shadow: 0 2px 4px rgba(0,0,0,0.6);
             --transition-speed: 0.3s;
         }
 
-        /* RESET & BASE STYLES */
+        * { box-sizing: border-box; } /* Fixes the "shifted to right" button issue */
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            
-            /* 
-               CRITICAL FIX: BACKGROUND IMAGE RESOURCE 
-               Using the RAW GitHub URL to ensure correct MIME type (image/png).
-               Added a dark overlay (rgba 0.7) to ensure text contrast.
-            */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            /* CHANGED: Reduced overlay from 0.7 to 0.4 for better background visibility */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                         url('https://raw.githubusercontent.com/RohitPhogat222/lifora-wellness.github.io/main/Screenshot%202025-03-07%20193036.png') no-repeat center center fixed;
             background-size: cover;
-            /* Fallback color if network fails */
-            background-color: #121212; 
         }
 
-        /* LAYOUT CONTAINER */
-       .container {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-            flex: 1; /* Ensures footer sticks to bottom */
+            flex: 1;
         }
 
-        /* TYPOGRAPHY */
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        h1 { 
-            font-size: 3.5rem; 
-            margin: 0; 
-            text-transform: uppercase; 
-            letter-spacing: 5px; 
-            text-shadow: var(--text-shadow);
-        }
-
-        h1 span { color: var(--accent); }
-        
-        p.subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-top: 10px;
-            font-weight: 300;
-        }
-
-        /* GLASSMORPHISM UTILITY CLASS */
-       .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur)); /* Safari support */
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        /* UPLOAD SECTION (NEW FEATURE) */
-       .upload-section {
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 60px;
-            transition: transform var(--transition-speed);
-        }
-
-       .upload-section:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        /* Styled Button acting as File Trigger */
-       .btn {
-            background: var(--accent);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-speed);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
-        }
-
-       .btn:hover {
-            background: var(--accent-hover);
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
-        }
-        
-       .btn-remove {
-            background: var(--danger);
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
-        }
-       .btn-remove:hover {
-            background: #c0392b;
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
-        }
-
-        /* Hidden Input */
-        #fileInput { display: none; }
-
-        /* GALLERY GRID */
-       .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-       .card {
-            padding: 15px;
+        /* STICKY UPLOAD OPTION (Right Side) */
+        .sticky-upload {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: transform var(--transition-speed);
-            animation: fadeInUp 0.5s ease-out;
+            gap: 10px;
         }
 
-       .card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2); /* Lighten on hover */
+        .side-btn {
+            background: var(--accent);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
         }
 
-       .card img {
+        .side-btn:hover { transform: scale(1.1); background: var(--accent-hover); }
+
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { font-size: 3.5rem; letter-spacing: 5px; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
+        h1 span { color: var(--accent); }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+        }
+
+        /* GALLERY & CARDS */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .card img {
             width: 100%;
-            height: 300px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 10px;
             margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
-       .card-title {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+        /* BUTTON FIX: Proper Box Alignment */
+        .btn {
+            background: var(--accent);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
             font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%; /* Keeps it inside the box properly */
+            transition: 0.3s;
         }
 
-        /* FOOTER */
+        .btn-remove { background: var(--danger); margin-top: 10px; }
+
+        /* PAGINATION STYLES */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0;
+        }
+
+        .page-num {
+            padding: 10px 18px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .page-num.active { background: var(--accent); border-color: var(--accent); }
+
+        /* FOOTER DETAILS */
         footer {
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.9);
             padding: 60px 20px;
             border-top: 4px solid var(--accent);
-            color: #bdc3c7;
         }
 
-       .footer-content {
+        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-       .footer-column h2 { color: var(--accent); margin-top: 0; font-size: 1.5rem; }
-       .footer-column h3 { color: white; margin: 20px 0 10px; font-size: 1.1rem; }
-       .footer-column ul { list-style: none; padding: 0; }
-       .footer-column li { margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-       .footer-column a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-       .footer-column a:hover { color: white; text-decoration: underline; }
+        .footer-col h3 { color: var(--accent); margin-bottom: 20px; }
+        .footer-col p { line-height: 1.6; color: #ccc; }
 
-        /* ANIMATIONS */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* RESPONSIVE ADJUSTMENTS */
         @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-           .container { padding: 20px; }
-           .upload-section { padding: 20px; }
+            .sticky-upload { bottom: 20px; top: auto; right: 20px; transform: none; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Lifora <span>Wellness</span></h1>
-        <p class="subtitle">Data-Driven Sustainable Innovation & Anime Aesthetics</p>
-    </header>
-
-    <div class="upload-section glass-panel">
-        <h2><i class="fas fa-cloud-upload-alt"></i> Expand the Collection</h2>
-        <p style="margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Add your own wellness-inspired anime art to the gallery. 
-            <br><span style="font-size: 0.9rem; opacity: 0.7;">(Note: Images are processed locally in your browser for privacy.)</span>
-        </p>
-        
-        <button class="btn" onclick="triggerUpload()">
-            <i class="fas fa-plus-circle"></i> Select Images
-        </button>
-        <input type="file" id="fileInput" accept="image/*" multiple>
-    </div>
-
-    <div class="gallery-grid" id="gallery">
-        <div class="card glass-panel">
-            <img src="https://via.placeholder.com/400x500/2ecc71/ffffff?text=Founder+Pick+1" alt="Founder Pick 1">
-            <div class="card-title">Forest Spirit (Founder's Pick)</div>
-            <a href="#" class="btn" style="width: 100%; justify-content: center;">
-                <i class="fas fa-download"></i> Download
-            </a>
-        </div>
-        
-        <div class="card glass-panel">
-            <img src="https://via.placeholder.com/400x500/3498db/ffffff?text=Founder+Pick+2" alt="Founder Pick 2">
-            <div class="card-title">Ocean Calm (Founder's Pick)</div>
-            <a href="#" class="btn" style="width: 100%; justify-content: center;">
-                <i class="fas fa-download"></i> Download
-            </a>
-        </div>
+<div class="sticky-upload">
+    <div class="side-btn" onclick="triggerUpload()" title="Upload Image">
+        <i class="fas fa-plus"></i>
     </div>
 </div>
 
-<footer>
-    <div class="footer-content">
-        <div class="footer-column">
-            <h2># Lifora Wellness 🌿</h2>
-            <p>Pioneering the intersection of Anime aesthetics and sustainable resource research.</p>
-            <h3>🏢 Core Pillars</h3>
-            <ul>
-                <li><i class="fas fa-recycle" style="color: var(--accent);"></i> Resource Research</li>
-                <li><i class="fas fa-leaf" style="color: var(--accent);"></i> Sustainable Products</li>
-                <li><i class="fas fa-database" style="color: var(--accent);"></i> Data-Driven Insights</li>
-            </ul>
+<div class="container">
+    <header>
+        <h1>Lifora <span>Wellness</span></h1>
+        <p>Innovation | Sustainability | Aesthetics</p>
+    </header>
+
+    <input type="file" id="fileInput" accept="image/*" multiple style="display:none">
+
+    <div class="gallery-grid" id="gallery">
         </div>
-        <div class="footer-column">
-            <h2>👨‍💻 Founder: Rohit Phogat</h2>
-            <p>B.Tech Computer Science (AI & ML)<br>K.R. Mangalam University</p>
-            <h3>🛠️ Tech Stack</h3>
-            <ul>
-                <li>Python & Java</li>
-                <li>AI/ML & MLOps</li>
-                <li>Data Science</li>
-            </ul>
-            <p><strong>Location:</strong> Rawaldhi, Charkhi Dadri, Haryana</p>
-            <p>
-                <a href="https://www.linkedin.com/in/rohit-phogat-636a34317" target="_blank">
-                    <i class="fab fa-linkedin"></i> Connect on LinkedIn
-                </a>
-            </p>
+
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h3>About Lifora Wellness</h3>
+            <p>Lifora Wellness is a visionary platform blending the world of high-end anime aesthetics with data-driven sustainability research. We believe that visual inspiration can drive real-world ecological change.</p>
+        </div>
+        <div class="footer-col">
+            <h3>The Founder</h3>
+            <p><strong>Rohit Phogat</strong><br>
+            A Computer Science Engineer specializing in AI and Machine Learning at K.R. Mangalam University. Rohit focuses on creating intelligent systems that promote sustainable resource management and innovative digital experiences.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Contact & Social</h3>
+            <p>Email: contact@liforawellness.com<br>
+            Location: Haryana, India</p>
+            <div style="margin-top: 15px;">
+                <a href="#" style="color: var(--accent); font-size: 1.5rem; margin-right: 15px;"><i class="fab fa-linkedin"></i></a>
+                <a href="#" style="color: var(--accent); font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+            </div>
         </div>
     </div>
-    <div style="text-align: center; margin-top: 40px; opacity: 0.5; font-size: 0.9rem;">
-        &copy; 2025 Lifora Wellness. All Rights Reserved.
+    <div style="text-align: center; margin-top: 40px; opacity: 0.5;">
+        &copy; 2026 Lifora Wellness by Rohit Phogat.
     </div>
 </footer>
 
 <script>
-    /**
-     * CLIENT-SIDE UPLOAD LOGIC
-     * Uses HTML5 File API and Blob URLs to simulate uploads without a backend.
-     */
+    let images = [
+        { name: "Founder Pick 1", url: "https://via.placeholder.com/400x500/2ecc71/ffffff?text=Nature+1" },
+        { name: "Founder Pick 2", url: "https://via.placeholder.com/400x500/3498db/ffffff?text=Nature+2" }
+    ];
     
+    let currentPage = 1;
+    const itemsPerPage = 6;
+
     const fileInput = document.getElementById('fileInput');
     const gallery = document.getElementById('gallery');
+    const pagination = document.getElementById('pagination');
 
-    // Trigger the hidden input when the styled button is clicked
-    function triggerUpload() {
-        fileInput.click();
-    }
+    function triggerUpload() { fileInput.click(); }
 
-    // Event Listener: Detects when files are selected
-    fileInput.addEventListener('change', function(event) {
-        const files = event.target.files;
-
-        if (files.length > 0) {
-            // Convert the FileList to an Array to iterate easily
-            Array.from(files).forEach(file => {
-                
-                // VALIDATION: Ensure the file is an image
-                if (!file.type.startsWith('image/')) {
-                    alert(`File "${file.name}" is not an image and was skipped.`);
-                    return;
-                }
-
-                createGalleryCard(file);
-            });
-        }
-        
-        // Reset input to allow selecting the same file again if needed
-        fileInput.value = '';
+    fileInput.addEventListener('change', function(e) {
+        const files = Array.from(e.target.files);
+        files.forEach(file => {
+            if (file.type.startsWith('image/')) {
+                const url = URL.createObjectURL(file);
+                images.unshift({ name: file.name, url: url, custom: true });
+            }
+        });
+        currentPage = 1;
+        renderGallery();
     });
 
-    /**
-     * Creates a new card element and appends it to the gallery.
-     * @param {File} file - The file object selected by the user.
-     */
-    function createGalleryCard(file) {
-        // 1. Create the Object URL (Memory Pointer)
-        const imageUrl = URL.createObjectURL(file);
+    function renderGallery() {
+        gallery.innerHTML = '';
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedItems = images.slice(start, end);
 
-        // 2. Build the DOM structure
-        const card = document.createElement('div');
-        card.className = 'card glass-panel';
+        paginatedItems.forEach((imgObj, index) => {
+            const actualIndex = start + index;
+            const card = document.createElement('div');
+            card.className = 'card glass-panel';
+            card.innerHTML = `
+                <img src="${imgObj.url}" alt="${imgObj.name}">
+                <div style="font-weight:600; margin-bottom:15px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                    ${imgObj.name}
+                </div>
+                <a href="${imgObj.url}" download="${imgObj.name}" class="btn">
+                    <i class="fas fa-download"></i> Download
+                </a>
+                ${imgObj.custom ? `<button class="btn btn-remove" onclick="removeImage(${actualIndex})">Remove</button>` : ''}
+            `;
+            gallery.appendChild(card);
+        });
 
-        // 3. Create Image Element
-        const img = document.createElement('img');
-        img.src = imageUrl;
-        img.alt = file.name;
-
-        // 4. Create Title
-        const title = document.createElement('div');
-        title.className = 'card-title';
-        title.textContent = file.name;
-
-        // 5. Create REMOVE Button (Not Download)
-        // Solves the "Redundancy" issue. User manages their own view.
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'btn btn-remove';
-        removeBtn.style.width = '100%';
-        removeBtn.style.justifyContent = 'center';
-        removeBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Remove';
-        
-        // Remove Logic
-        removeBtn.onclick = function() {
-            // Remove from DOM
-            card.remove();
-            // Critical: Revoke the URL to free up browser memory
-            URL.revokeObjectURL(imageUrl);
-        };
-
-        // 6. Assemble and Append
-        card.appendChild(img);
-        card.appendChild(title);
-        card.appendChild(removeBtn);
-        
-        // Add to the beginning of the gallery or append to end?
-        // Appending to end matches standard flow.
-        gallery.appendChild(card);
+        renderPagination();
     }
+
+    function renderPagination() {
+        pagination.innerHTML = '';
+        const pageCount = Math.ceil(images.length / itemsPerPage);
+        
+        if (pageCount <= 1) return;
+
+        for (let i = 1; i <= pageCount; i++) {
+            const btn = document.createElement('div');
+            btn.className = `page-num ${i === currentPage ? 'active' : ''}`;
+            btn.innerText = i;
+            btn.onclick = () => {
+                currentPage = i;
+                renderGallery();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            pagination.appendChild(btn);
+        }
+    }
+
+    function removeImage(index) {
+        images.splice(index, 1);
+        renderGallery();
+    }
+
+    // Initial Load
+    renderGallery();
 </script>
 
 </body>
