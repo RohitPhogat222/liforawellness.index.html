@@ -2,15 +2,27 @@
 <html lang="en" class="h-full">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rohit Phogat | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lifora Wellness">
+  <meta name="theme-color" content="#302b63">
+  <title>Lifora Wellness | Digital Innovation</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
+ 
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      overscroll-behavior: none;
     }
     
     * {
@@ -79,6 +91,10 @@
       66% { transform: translate(-20px, 20px) scale(0.95); }
     }
     
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
     .gallery-card {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -88,11 +104,17 @@
       box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.4);
     }
     
-    .gallery-card:hover .card-overlay {
+    .gallery-card:active {
+      transform: translateY(-4px) scale(1.01);
+    }
+    
+    .gallery-card:hover .card-overlay,
+    .gallery-card:active .card-overlay {
       opacity: 1;
     }
     
-    .gallery-card:hover img {
+    .gallery-card:hover img,
+    .gallery-card:active img {
       transform: scale(1.1);
     }
     
@@ -110,6 +132,10 @@
       background: rgba(255, 255, 255, 0.2);
     }
     
+    .skill-tag:active {
+      transform: scale(0.98);
+    }
+    
     .upload-zone {
       border: 2px dashed rgba(255, 255, 255, 0.3);
       transition: all 0.3s ease;
@@ -120,6 +146,11 @@
       background: rgba(102, 126, 234, 0.1);
     }
     
+    .upload-zone:active {
+      border-color: rgba(102, 126, 234, 1);
+      background: rgba(102, 126, 234, 0.2);
+    }
+    
     .pagination-btn {
       transition: all 0.3s ease;
     }
@@ -127,6 +158,11 @@
     .pagination-btn:hover:not(:disabled) {
       background: rgba(255, 255, 255, 0.2);
       transform: scale(1.1);
+    }
+    
+    .pagination-btn:active:not(:disabled) {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(0.95);
     }
     
     .pagination-btn:disabled {
@@ -189,6 +225,9 @@
 
     .input-field {
       transition: all 0.3s ease;
+      -webkit-appearance: none;
+      appearance: none;
+      font-size: 16px;
     }
 
     .input-field:focus {
@@ -221,6 +260,220 @@
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+
+    .slide-left {
+      animation: slideLeft 0.4s ease forwards;
+    }
+
+    @keyframes slideLeft {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(-30px); }
+    }
+
+    .slide-right {
+      animation: slideRight 0.4s ease forwards;
+    }
+
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .error-message {
+      color: #f87171;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .verification-code {
+      font-family: 'Space Grotesk', monospace;
+      letter-spacing: 0.25rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .info-banner {
+      background: rgba(102, 126, 234, 0.1);
+      border-left: 4px solid rgba(102, 126, 234, 0.8);
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    .online-bar {
+      position: static;
+      height: auto;
+      background: rgba(102, 126, 234, 0.1);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-top: 1px solid rgba(102, 126, 234, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      z-index: auto;
+      animation: fadeIn 0.5s ease-out;
+      padding: 16px;
+      margin-top: 24px;
+    }
+
+    @keyframes slideUpBar {
+      from { transform: translateY(60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .online-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .online-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      50% { opacity: 1; box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.1); }
+    }
+
+    .online-text {
+      font-size: 0.875rem;
+      color: #fff;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .online-count {
+      font-weight: 700;
+      background: linear-gradient(135deg, #22c55e, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @supports (padding: max(0px)) {
+      header {
+        padding-top: max(0px, env(safe-area-inset-top));
+      }
+    }
+
+    button {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    input, textarea, select {
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .blob {
+        filter: blur(60px);
+      }
+
+      .blob-1 {
+        width: 300px;
+        height: 300px;
+        top: -80px;
+        left: -80px;
+      }
+
+      .blob-2 {
+        width: 250px;
+        height: 250px;
+        right: -40px;
+      }
+
+      .blob-3 {
+        width: 200px;
+        height: 200px;
+      }
+
+      .modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      input[type="file"] {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .online-text {
+        font-size: 0.75rem;
+      }
+
+      .online-indicator {
+        padding: 6px 12px;
+        gap: 6px;
+      }
+
+      .modal-backdrop {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+    }
+
+    .like-btn-style {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .like-btn-style:hover:not(.liked) {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .like-btn-style:active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .like-btn-style.liked {
+      background: rgba(239, 68, 68, 0.15) !important;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .heart-icon {
+      display: inline-block;
+      transform-origin: center;
+    }
+
+    .heart-icon.beating {
+      animation: heartBeat 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes heartBeat {
+      0% {
+        transform: scale(1);
+      }
+      15% {
+        transform: scale(1.3);
+      }
+      30% {
+        transform: scale(1);
+      }
+      45% {
+        transform: scale(1.2);
+      }
+      60% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
  </head>
@@ -228,87 +481,147 @@
   <div class="min-h-full relative overflow-hidden"><!-- Animated Blobs -->
    <div class="blob blob-1"></div>
    <div class="blob blob-2"></div>
-   <div class="blob blob-3"></div><!-- Login Modal (Hidden by default) -->
-   <div id="login-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop bg-black/40">
-    <div class="glass modal-content rounded-3xl p-8 sm:p-12 w-full max-w-md">
-     <div class="flex items-center justify-between mb-6">
-      <h2 class="heading-font text-2xl font-bold">Developer Access</h2><button id="close-modal-btn" class="text-white/60 hover:text-white transition-colors">
-       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-       </svg></button>
+   <div class="blob blob-3"></div><!-- Login Modal -->
+   <div id="login-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop bg-black/70" style="backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+    <div class="glass modal-content rounded-3xl p-8 sm:p-12 w-full max-w-md max-h-screen overflow-y-auto"><!-- Login Form -->
+     <div id="login-section" class="slide-right">
+      <div class="flex items-center justify-between mb-6">
+       <h2 class="heading-font text-2xl font-bold">Developer Login</h2><button id="close-modal-btn" class="text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div><!-- Info Banner -->
+      <div class="info-banner rounded-lg p-4 mb-6">
+       <p class="text-sm text-white/80">📝 Please fill in the details to use the website as a developer</p>
+      </div>
+      <form id="login-form" class="space-y-4">
+       <div class="form-group"><label class="block text-sm font-medium mb-2">Username</label> <input type="text" id="username-input" placeholder="Enter your username" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
+        <div id="username-error" class="error-message hidden"></div>
+       </div>
+       <div class="form-group"><label class="block text-sm font-medium mb-2">Password</label> <input type="password" id="password-input" placeholder="Enter your password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
+        <div id="password-error" class="error-message hidden"></div>
+       </div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>🔓</span> <span>Login to Dashboard</span> </button>
+      </form>
+      <div class="text-center mt-6">
+       <p class="text-white/60 text-sm mb-3">Forgot your password?</p><button id="forgot-password-btn" class="text-blue-400 hover:text-blue-300 active:text-blue-500 transition-colors text-sm underline"> Click here to reset </button>
+      </div>
+     </div><!-- Forgot Password Form -->
+     <div id="forgot-password-section" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+       <h2 class="heading-font text-2xl font-bold">Reset Password</h2><button id="back-to-login-btn" class="text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <form id="forgot-form" class="space-y-4">
+       <div class="form-group"><label class="block text-sm font-medium mb-2">Email Address</label> <input type="email" id="forgot-email-input" placeholder="Enter your registered email" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
+        <div id="email-error" class="error-message hidden"></div>
+       </div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>📧</span> <span>Send Verification Code</span> </button>
+      </form>
+      <p class="text-white/60 text-xs mt-4 text-center">We'll send a verification code to your email address.</p>
+     </div><!-- Verification Code Form -->
+     <div id="verification-section" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+       <h2 class="heading-font text-2xl font-bold">Verify Code</h2><button id="close-verification-btn" class="text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="mb-6">
+       <p class="text-white/70 text-sm">We've sent a 6-digit verification code to your email. Please enter it below to continue.</p>
+      </div>
+      <form id="verification-form" class="space-y-4">
+       <div class="form-group"><label class="block text-sm font-medium mb-2">Verification Code</label> <input type="text" id="verification-code-input" placeholder="000000" maxlength="6" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none text-center verification-code" required>
+        <div id="code-error" class="error-message hidden"></div>
+       </div>
+       <div class="form-group"><label class="block text-sm font-medium mb-2">New Password</label> <input type="password" id="new-password-input" placeholder="Enter new password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
+        <div id="new-pass-error" class="error-message hidden"></div>
+       </div>
+       <div class="form-group"><label class="block text-sm font-medium mb-2">Confirm Password</label> <input type="password" id="confirm-password-input" placeholder="Confirm new password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
+        <div id="confirm-pass-error" class="error-message hidden"></div>
+       </div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>✅</span> <span>Reset Password</span> </button>
+      </form>
+      <p class="text-white/60 text-xs mt-4 text-center">Didn't receive the code? <button id="resend-code-btn" class="text-blue-400 hover:text-blue-300 active:text-blue-500 underline">Resend code</button></p>
      </div>
-     <form id="login-form" class="space-y-4">
-      <div><label class="block text-sm font-medium mb-2">Developer ID</label> <input type="text" id="dev-id-input" placeholder="Enter your unique developer ID" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-       <p class="text-xs text-white/40 mt-2">Example: dev_rohit_001</p>
-      </div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 transition-all flex items-center justify-center gap-2"> <span>🔓</span> <span>Access Dashboard</span> </button>
-     </form>
-     <p class="text-center text-white/40 text-sm mt-6">Your customization dashboard is <br>
-      secured with your unique ID</p>
     </div>
    </div><!-- Main Container -->
    <div id="main-container" class="relative z-10 w-full min-h-full"><!-- Header -->
     <header class="glass sticky top-0 z-40">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-      <div class="flex items-center justify-between">
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl profile-avatar flex items-center justify-center"><span class="text-xl font-bold heading-font">RP</span>
-        </div><span class="heading-font font-semibold text-lg hidden sm:block" id="header-name">Rohit Phogat</span>
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      <div class="flex items-center justify-between gap-4">
+       <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 relative">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-green-400 to-blue-500"><span class="text-xs sm:text-sm font-bold heading-font">LW</span>
+        </div><button id="nav-menu-toggle" class="heading-font font-semibold text-sm sm:text-base truncate hover:text-white/80 transition-colors flex items-center gap-1.5 min-h-[44px]"> Lifora Wellness 
+         <svg id="menu-chevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+         </svg></button> <!-- Dropdown Menu -->
+        <div id="nav-dropdown" class="absolute top-full left-0 mt-2 glass rounded-xl shadow-2xl min-w-max hidden z-50">
+         <nav class="py-2"><a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors first:rounded-t-xl" onclick="return handleNavLink(event, 'about')"> <span>ℹ️</span> <span>About Our Company</span> </a> <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors" onclick="return handleNavLink(event, 'social')"> <span>👥</span> <span>Our Social Group</span> </a> <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors" onclick="return handleNavLink(event, 'anime')"> <span>🎨</span> <span>Anime &amp; Animated Wallpapers</span> </a> <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors last:rounded-b-xl" onclick="return handleNavLink(event, 'support')"> <span>🆘</span> <span>Customer Support</span> </a>
+         </nav>
+        </div>
        </div>
-       <nav class="flex items-center gap-2 sm:gap-4"><!-- Developer Control Panel (Hidden until login) -->
+       <nav class="flex items-center gap-2 sm:gap-4 flex-shrink-0"><!-- Developer Control Panel -->
         <div id="dev-panel" class="hidden flex items-center gap-3">
-         <div class="flex items-center gap-2 text-xs text-white/60"><span class="w-2 h-2 bg-green-400 rounded-full"></span> <span id="dev-id-display">dev_user</span>
-         </div><button id="logout-btn" class="glass-dark px-4 py-2 rounded-lg text-sm hover:bg-white/10 transition-colors flex items-center gap-2"> <span>🚪</span> <span class="hidden sm:inline">Logout</span> </button>
-        </div><!-- Login Button (Visible until login) --> <button id="open-login-btn" class="glass-dark px-4 py-2 rounded-lg text-sm hover:bg-white/10 transition-colors flex items-center gap-2"> <span>🔐</span> <span class="hidden sm:inline">Developer Login</span> </button>
+         <div class="flex items-center gap-2 text-xs text-white/60 hidden sm:flex"><span class="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></span> <span id="dev-username-display" class="truncate max-w-[100px]">username</span>
+         </div><button id="logout-btn" class="glass-dark px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-white/10 active:bg-white/20 transition-colors flex items-center gap-2 min-h-[44px]"> <span>🚪</span> <span class="hidden sm:inline">Logout</span> </button>
+        </div><!-- Login Button --> <button id="open-login-btn" class="glass-dark px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-white/10 active:bg-white/20 transition-colors flex items-center gap-2 min-h-[44px]"> <span>🔐</span> <span class="hidden sm:inline">Developer Login</span> </button>
        </nav>
       </div>
      </div>
-    </header><!-- Toggle Buttons (Hidden until login) -->
+    </header><!-- Toggle Buttons -->
     <div id="tab-section" class="glass sticky top-16 z-30 hidden">
      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-      <div class="flex gap-2"><button id="view-btn" class="tab-btn active glass-dark px-4 sm:px-6 py-2 rounded-lg text-sm font-medium transition-all"> 👁️ <span class="hidden sm:inline">View Site</span> </button> <button id="customize-btn" class="tab-btn glass-dark px-4 sm:px-6 py-2 rounded-lg text-sm font-medium transition-all"> ⚙️ <span class="hidden sm:inline">Customize</span> </button>
+      <div class="flex gap-2"><button id="view-btn" class="tab-btn active glass-dark px-4 sm:px-6 py-2 rounded-lg text-sm font-medium transition-all min-h-[44px]"> 👁️ <span class="hidden sm:inline">View Site</span> </button> <button id="customize-btn" class="tab-btn glass-dark px-4 sm:px-6 py-2 rounded-lg text-sm font-medium transition-all min-h-[44px]"> ⚙️ <span class="hidden sm:inline">Customize</span> </button>
       </div>
      </div>
-    </div><!-- View Site Mode (Visible by default) -->
-    <div id="view-mode" class="min-h-full"><!-- Hero Profile Section -->
-     <section id="profile" class="py-12 sm:py-20 px-4 sm:px-6">
+    </div><!-- View Site Mode -->
+    <div id="view-mode" class="min-h-full"><!-- Hero Brand Section -->
+     <section id="profile" class="py-16 sm:py-24 px-4 sm:px-6">
       <div class="max-w-7xl mx-auto">
-       <div class="glass rounded-3xl p-6 sm:p-10 fade-in">
-        <div class="flex flex-col lg:flex-row gap-8 items-center lg:items-start"><!-- Avatar -->
-         <div class="flex-shrink-0">
-          <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl profile-avatar flex items-center justify-center text-5xl sm:text-6xl font-bold heading-font">
-           RP
+       <div class="glass rounded-3xl p-6 sm:p-12 fade-in"><!-- Company Header -->
+        <div class="text-center mb-12">
+         <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-green-400 to-blue-500"><span class="text-lg font-bold heading-font">LW</span>
           </div>
-         </div><!-- Profile Info -->
-         <div class="flex-1 text-center lg:text-left">
-          <h1 class="heading-font text-3xl sm:text-4xl lg:text-5xl font-bold mb-2" id="profile-name">Rohit Phogat</h1>
-          <p class="text-lg sm:text-xl text-white/70 mb-4" id="profile-title">Creative Developer &amp; Digital Artist</p>
-          <p class="text-white/60 max-w-2xl mb-6 leading-relaxed" id="profile-bio">Passionate about blending technology with art. Specializing in anime aesthetics, sustainable design, and creating immersive digital experiences that inspire and captivate.</p><!-- Skills -->
-          <div class="flex flex-wrap gap-2 justify-center lg:justify-start mb-6"><span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🎨 Digital Art</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🌿 Sustainability</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">⚡ Web Dev</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🎬 Anime</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">✨ UI/UX</span>
-          </div><!-- Stats -->
-          <div class="flex gap-8 justify-center lg:justify-start">
-           <div class="text-center">
-            <div class="heading-font text-2xl sm:text-3xl font-bold">
-             50+
-            </div>
-            <div class="text-white/50 text-sm">
-             Projects
-            </div>
-           </div>
-           <div class="text-center">
-            <div class="heading-font text-2xl sm:text-3xl font-bold" id="stat-images">
-             0
-            </div>
-            <div class="text-white/50 text-sm">
-             Gallery Items
-            </div>
-           </div>
-           <div class="text-center">
-            <div class="heading-font text-2xl sm:text-3xl font-bold">
-             3+
-            </div>
-            <div class="text-white/50 text-sm">
-             Years Exp
-            </div>
-           </div>
+          <h1 class="heading-font text-2xl sm:text-3xl font-bold">Lifora Wellness</h1>
+         </div>
+         <p class="text-white/70 text-sm sm:text-base">Modern Ideas • Renewable Resources • Artificial Intelligence</p>
+        </div><!-- Center Brand Display with Icons -->
+        <div class="relative py-16 sm:py-20 px-6 sm:px-12"><!-- Left Leaf Icon -->
+         <div class="absolute left-0 top-1/2 -translate-y-1/2 text-5xl sm:text-7xl opacity-50 animate-float">
+          🍃
+         </div><!-- Center Branding -->
+         <div class="text-center px-4 sm:px-12">
+          <div class="mb-8">
+           <h2 class="heading-font text-4xl sm:text-6xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">Lifora Digital</h2>
+           <p class="heading-font text-3xl sm:text-5xl font-semibold text-white/90">Anime Arts</p>
+          </div>
+         </div><!-- Right Plant Icon -->
+         <div class="absolute right-0 top-1/2 -translate-y-1/2 text-5xl sm:text-7xl opacity-50 animate-float" style="animation-delay: -2s;">
+          🌱
+         </div>
+        </div><!-- Skills -->
+        <div class="flex flex-wrap gap-2 justify-center mb-10 mt-12"><span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🎨 Digital Art</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🌿 Sustainability</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">⚡ Web Dev</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🤖 AI Integration</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">🎬 Anime</span> <span class="skill-tag glass-dark px-4 py-2 rounded-full text-sm">��� UI/UX</span>
+        </div><!-- Stats -->
+        <div class="flex flex-wrap gap-6 sm:gap-8 justify-center">
+         <div class="text-center">
+          <div class="heading-font text-2xl sm:text-3xl font-bold">
+           50+
+          </div>
+          <div class="text-white/50 text-sm">
+           Projects
+          </div>
+         </div>
+         <div class="text-center">
+          <div class="heading-font text-2xl sm:text-3xl font-bold" id="stat-images">
+           0
+          </div>
+          <div class="text-white/50 text-sm">
+           Gallery Items
+          </div>
+         </div>
+         <div class="text-center">
+          <div class="heading-font text-2xl sm:text-3xl font-bold">
+           3+
+          </div>
+          <div class="text-white/50 text-sm">
+           Years Exp
           </div>
          </div>
         </div>
@@ -320,24 +633,24 @@
        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
         <h2 class="heading-font text-2xl sm:text-3xl font-bold" id="gallery-title">🖼️ Multimedia Gallery</h2><!-- Search Bar -->
         <div class="relative w-full sm:w-80"><input type="text" id="search-input" placeholder="Search images by name..." class="search-input w-full glass-dark rounded-xl px-5 py-3 pl-12 text-white placeholder-white/40 outline-none">
-         <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+         <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 pointer-events-none" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
          </svg>
         </div>
        </div><!-- Gallery Grid -->
-       <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8"><!-- Images will be rendered here -->
+       <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
        </div><!-- Empty State -->
        <div id="empty-state" class="glass rounded-2xl p-12 text-center hidden">
         <div class="w-24 h-24 rounded-full glass-dark flex items-center justify-center mx-auto mb-6">
          <svg class="w-12 h-12 text-white/40" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
          </svg>
         </div>
-        <h3 class="heading-font text-xl font-semibold mb-2" id="empty-title">No images found</h3>
-        <p class="text-white/50" id="empty-message">Upload your first image to start building your gallery!</p>
+        <h3 class="heading-font text-xl font-semibold mb-2">No images found</h3>
+        <p class="text-white/50">Upload your first image to start building your gallery!</p>
        </div><!-- Pagination -->
-       <div id="pagination" class="flex items-center justify-center gap-2 hidden"><button id="prev-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center">
+       <div id="pagination" class="flex items-center justify-center gap-2 hidden"><button id="prev-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px]">
          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
          </svg></button>
-        <div id="page-numbers" class="flex gap-1"></div><button id="next-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center">
+        <div id="page-numbers" class="flex gap-1"></div><button id="next-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px]">
          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
          </svg></button>
        </div>
@@ -348,7 +661,7 @@
        <div class="glass rounded-3xl p-6 sm:p-10 text-center">
         <h2 class="heading-font text-2xl sm:text-3xl font-bold mb-4">Let's Connect</h2>
         <p class="text-white/60 mb-8">Interested in collaborating or just want to say hi? Feel free to reach out!</p>
-        <div class="flex flex-wrap justify-center gap-4"><a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>📧</span> Email </a> <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>💼</span> LinkedIn </a> <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>🐙</span> GitHub </a> <a href="#" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 transition-colors"> <span>🐦</span> Twitter </a>
+        <div class="flex flex-wrap justify-center gap-4"><a href="#" target="_blank" rel="noopener noreferrer" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 active:bg-white/20 transition-colors min-h-[44px]"> <span>📧</span> Email </a> <a href="#" target="_blank" rel="noopener noreferrer" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 active:bg-white/20 transition-colors min-h-[44px]"> <span>💼</span> LinkedIn </a> <a href="#" target="_blank" rel="noopener noreferrer" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 active:bg-white/20 transition-colors min-h-[44px]"> <span>🐙</span> GitHub </a> <a href="#" target="_blank" rel="noopener noreferrer" class="glass-dark px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-white/10 active:bg-white/20 transition-colors min-h-[44px]"> <span>🐦</span> Twitter </a>
         </div>
        </div>
       </div>
@@ -358,8 +671,8 @@
        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
          <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl profile-avatar flex items-center justify-center"><span class="text-lg font-bold heading-font">RP</span>
-          </div><span class="heading-font font-semibold" id="footer-name">Rohit Phogat</span>
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-green-400 to-blue-500"><span class="text-lg font-bold heading-font">LW</span>
+          </div><span class="heading-font font-semibold">Lifora Wellness</span>
          </div>
          <p class="text-white/50 text-sm">Creating digital experiences with passion and purpose.</p>
         </div>
@@ -370,17 +683,21 @@
         </div>
         <div>
          <h4 class="heading-font font-semibold mb-4">Focus Areas</h4>
-         <div class="flex flex-wrap gap-2"><span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Anime Art</span> <span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Sustainability</span> <span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Web Design</span>
+         <div class="flex flex-wrap gap-2"><span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">AI &amp; Tech</span> <span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Anime Art</span> <span class="text-xs glass-dark px-3 py-1 rounded-full text-white/60">Sustainability</span>
          </div>
         </div>
        </div>
        <div class="border-t border-white/10 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-white/40 text-sm">© 2024 Rohit Phogat. All rights reserved.</p>
-        <p class="text-white/40 text-sm flex items-center gap-2">Made with <span class="text-red-400">❤️</span> for creativity &amp; sustainability</p>
+        <p class="text-white/40 text-sm">© 2024 Lifora Wellness. All rights reserved.</p>
+        <p class="text-white/40 text-sm flex items-center gap-2">Empowering <span class="text-green-400">🌍</span> with innovation &amp; sustainability</p>
+       </div><!-- Users Online Indicator -->
+       <div class="online-bar">
+        <div class="online-indicator"><span class="online-dot"></span> <span class="online-text"> <span class="online-count">127</span> people online </span>
+        </div>
        </div>
       </div>
      </footer>
-    </div><!-- Customize Mode (Hidden until login) -->
+    </div><!-- Customize Mode -->
     <div id="customize-mode" class="min-h-full hidden"><!-- Success Toast -->
      <div id="success-toast" class="fixed top-20 right-4 glass rounded-lg px-6 py-4 flex items-center gap-3 hidden z-50 success-toast">
       <svg class="w-5 h-5 text-green-400" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
@@ -411,14 +728,13 @@
            </div><p class="text-white/70 text-center"><span class="text-white font-medium">Click to upload</span> or drag and drop</p><p class="text-white/40 text-sm mt-1">PNG, JPG, GIF up to 10MB</p></label>
          </div><!-- Gallery Preview -->
          <div id="gallery-preview" class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6 hidden">
-          <h3 class="col-span-full text-sm font-medium">Uploaded Images</h3>
          </div>
          <div id="gallery-stats" class="glass-dark rounded-lg p-4 text-center">
           <p class="text-sm text-white/70">Total Images: <span class="font-bold text-white" id="preview-count">0</span></p>
          </div>
         </div>
        </div><!-- Save Button -->
-       <div class="flex gap-4"><button id="save-customize-btn" class="flex-1 glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 transition-all flex items-center justify-center gap-2"> <span>💾</span> <span>Save All Changes</span> </button> <button id="clear-gallery-btn" class="glass-dark px-6 py-3 rounded-lg font-semibold hover:bg-red-500/20 transition-all flex items-center gap-2"> <span>🗑️</span> <span>Clear All</span> </button>
+       <div class="flex flex-col sm:flex-row gap-4 mb-20"><button id="save-customize-btn" class="flex-1 glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2 min-h-[44px]"> <span>💾</span> <span>Save All Changes</span> </button> <button id="clear-gallery-btn" class="glass-dark px-6 py-3 rounded-lg font-semibold hover:bg-red-500/20 transition-all flex items-center gap-2 min-h-[44px]"> <span>🗑️</span> <span>Clear All</span> </button>
        </div>
       </div>
      </section>
@@ -427,7 +743,7 @@
   </div>
   <script>
     // ==================== STATE MANAGEMENT ====================
-    let currentDevId = '';
+    let currentUsername = '';
     let allProfiles = {};
     let currentProfile = null;
     let images = [];
@@ -435,13 +751,16 @@
     const imagesPerPage = 8;
     let searchQuery = '';
     let isLoggedIn = false;
+    let verificationEmail = '';
+    let generatedVerificationCode = '';
+    let isDropdownOpen = false;
 
     // ==================== DATA SDK HANDLER ====================
     const dataHandler = {
       onDataChanged(data) {
         allProfiles = {};
         data.forEach(profile => {
-          allProfiles[profile.dev_id] = profile;
+          allProfiles[profile.username] = profile;
         });
       }
     };
@@ -449,62 +768,205 @@
     // ==================== DOM ELEMENTS ====================
     const loginModal = document.getElementById('login-modal');
     const loginForm = document.getElementById('login-form');
-    const devIdInput = document.getElementById('dev-id-input');
+    const usernameInput = document.getElementById('username-input');
+    const passwordInput = document.getElementById('password-input');
     const openLoginBtn = document.getElementById('open-login-btn');
     const closeModalBtn = document.getElementById('close-modal-btn');
+    const backToLoginBtn = document.getElementById('back-to-login-btn');
+    const closeVerificationBtn = document.getElementById('close-verification-btn');
     const devPanel = document.getElementById('dev-panel');
     const logoutBtn = document.getElementById('logout-btn');
     const tabSection = document.getElementById('tab-section');
-    const devIdDisplay = document.getElementById('dev-id-display');
+    const devUsernameDisplay = document.getElementById('dev-username-display');
+    
+    // Navigation dropdown elements
+    const navMenuToggle = document.getElementById('nav-menu-toggle');
+    const navDropdown = document.getElementById('nav-dropdown');
+    const menuChevron = document.getElementById('menu-chevron');
+    
+    // Form sections
+    const loginSection = document.getElementById('login-section');
+    const forgotPasswordSection = document.getElementById('forgot-password-section');
+    const verificationSection = document.getElementById('verification-section');
+    
+    // Buttons
+    const forgotPasswordBtn = document.getElementById('forgot-password-btn');
+    const forgotForm = document.getElementById('forgot-form');
+    const forgotEmailInput = document.getElementById('forgot-email-input');
+    const verificationForm = document.getElementById('verification-form');
+    const verificationCodeInput = document.getElementById('verification-code-input');
+    const newPasswordInput = document.getElementById('new-password-input');
+    const confirmPasswordInput = document.getElementById('confirm-password-input');
+    const resendCodeBtn = document.getElementById('resend-code-btn');
+    
+    // Tabs
     const viewBtn = document.getElementById('view-btn');
     const customizeBtn = document.getElementById('customize-btn');
     const viewMode = document.getElementById('view-mode');
     const customizeMode = document.getElementById('customize-mode');
 
+    // ==================== HELPER FUNCTIONS ====================
+    function generateVerificationCode() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    function simplePasswordHash(password) {
+      let hash = 0;
+      for (let i = 0; i < password.length; i++) {
+        const char = password.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+      }
+      return 'hash_' + Math.abs(hash).toString(36);
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.classList.add('hidden');
+        el.textContent = '';
+      });
+    }
+
+    function showError(elementId, message) {
+      const errorEl = document.getElementById(elementId);
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.classList.remove('hidden');
+      }
+    }
+
+    // ==================== NAVIGATION DROPDOWN ====================
+    function toggleDropdown() {
+      isDropdownOpen = !isDropdownOpen;
+      if (isDropdownOpen) {
+        navDropdown.classList.remove('hidden');
+        menuChevron.style.transform = 'rotate(180deg)';
+      } else {
+        navDropdown.classList.add('hidden');
+        menuChevron.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function closeDropdown() {
+      isDropdownOpen = false;
+      navDropdown.classList.add('hidden');
+      menuChevron.style.transform = 'rotate(0deg)';
+    }
+
+    navMenuToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleDropdown();
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navMenuToggle.contains(e.target) && !navDropdown.contains(e.target)) {
+        closeDropdown();
+      }
+    });
+
+    // Handle navigation link clicks
+    window.handleNavLink = function(e, section) {
+      e.preventDefault();
+      closeDropdown();
+
+      // Store the clicked section for reference
+      const messageMap = {
+        about: 'About Our Company - Learn more about Lifora Wellness and our mission to blend technology with art and sustainability.',
+        social: 'Our Social Group - Connect with us on social media and join our vibrant community of creators and innovators.',
+        anime: 'Anime & Animated Wallpapers - Explore our curated collection of beautiful anime art and animated wallpapers.',
+        support: 'Customer Support - Get help with your questions or issues. Our support team is here to assist you.'
+      };
+
+      // Show a toast notification with the section info
+      const toastMessage = document.getElementById('toast-message');
+      toastMessage.textContent = messageMap[section] || 'Section coming soon!';
+      const successToast = document.getElementById('success-toast');
+      successToast.classList.remove('hidden');
+      setTimeout(() => successToast.classList.add('hidden'), 4000);
+
+      return false;
+    };
+
     // ==================== LOGIN MODAL LOGIC ====================
     openLoginBtn.addEventListener('click', () => {
+      clearErrors();
       loginModal.classList.remove('hidden');
-      devIdInput.focus();
+      usernameInput.focus();
     });
 
     closeModalBtn.addEventListener('click', () => {
       loginModal.classList.add('hidden');
+      clearErrors();
+    });
+
+    closeVerificationBtn.addEventListener('click', () => {
+      loginModal.classList.add('hidden');
+      clearErrors();
+      usernameInput.value = '';
+      passwordInput.value = '';
+      forgotEmailInput.value = '';
+      verificationCodeInput.value = '';
+      newPasswordInput.value = '';
+      confirmPasswordInput.value = '';
     });
 
     loginModal.addEventListener('click', (e) => {
       if (e.target === loginModal) {
         loginModal.classList.add('hidden');
+        clearErrors();
       }
     });
 
     // ==================== LOGIN FORM SUBMISSION ====================
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const devId = devIdInput.value.trim();
+      clearErrors();
       
-      if (!devId) {
-        const errorMsg = document.createElement('div');
-        errorMsg.className = 'text-red-400 text-sm mt-2';
-        errorMsg.textContent = 'Please enter a Developer ID';
-        loginForm.appendChild(errorMsg);
-        setTimeout(() => errorMsg.remove(), 3000);
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+      
+      if (!username) {
+        showError('username-error', 'Please enter your username');
+        return;
+      }
+      
+      if (!password) {
+        showError('password-error', 'Please enter your password');
         return;
       }
 
-      currentDevId = devId;
-      isLoggedIn = true;
-      devIdDisplay.textContent = devId;
+      // Check if profile exists with matching credentials
+      if (allProfiles[username]) {
+        const profile = allProfiles[username];
+        const passwordHash = simplePasswordHash(password);
+        
+        if (profile.password_hash === passwordHash) {
+          // Login successful
+          currentUsername = username;
+          currentProfile = profile;
+          isLoggedIn = true;
+          devUsernameDisplay.textContent = username;
 
-      // Check if profile exists
-      if (allProfiles[devId]) {
-        loadProfileData(allProfiles[devId]);
+          loginModal.classList.add('hidden');
+          openLoginBtn.classList.add('hidden');
+          devPanel.classList.remove('hidden');
+          tabSection.classList.remove('hidden');
+          initializeGallery();
+          usernameInput.value = '';
+          passwordInput.value = '';
+        } else {
+          showError('password-error', 'Incorrect password');
+        }
       } else {
         // Create new profile
         const newProfile = {
-          dev_id: devId,
+          username: username,
+          password_hash: simplePasswordHash(password),
+          email: '',
           profile_name: 'Rohit Phogat',
           profile_title: 'Creative Developer & Digital Artist',
-          profile_bio: 'Passionate about blending technology with art. Specializing in anime aesthetics, sustainable design, and creating immersive digital experiences that inspire and captivate.',
+          profile_bio: 'Blending technology with art. Specializing in anime aesthetics, sustainable design, and creating immersive digital experiences with AI integration.',
           gallery_title: '🖼️ Multimedia Gallery',
           background_color: '#302b63',
           text_color: '#ffffff',
@@ -518,23 +980,151 @@
 
         const result = await window.dataSdk.create(newProfile);
         if (result.isOk) {
+          currentUsername = username;
           currentProfile = newProfile;
-          allProfiles[devId] = newProfile;
+          allProfiles[username] = newProfile;
+          isLoggedIn = true;
+          devUsernameDisplay.textContent = username;
+
+          loginModal.classList.add('hidden');
+          openLoginBtn.classList.add('hidden');
+          devPanel.classList.remove('hidden');
+          tabSection.classList.remove('hidden');
+          initializeGallery();
+          usernameInput.value = '';
+          passwordInput.value = '';
+        }
+      }
+    });
+
+    // ==================== FORGOT PASSWORD FLOW ====================
+    forgotPasswordBtn.addEventListener('click', () => {
+      loginSection.classList.add('hidden');
+      forgotPasswordSection.classList.remove('hidden');
+      clearErrors();
+    });
+
+    backToLoginBtn.addEventListener('click', () => {
+      forgotPasswordSection.classList.add('hidden');
+      verificationSection.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+      clearErrors();
+    });
+
+    forgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      clearErrors();
+      
+      const email = forgotEmailInput.value.trim();
+      
+      if (!email) {
+        showError('email-error', 'Please enter your email address');
+        return;
+      }
+
+      // Check if email exists in any profile
+      let foundProfile = null;
+      for (let username in allProfiles) {
+        if (allProfiles[username].email === email) {
+          foundProfile = allProfiles[username];
+          break;
         }
       }
 
-      // Update UI
-      loginModal.classList.add('hidden');
-      openLoginBtn.classList.add('hidden');
-      devPanel.classList.remove('hidden');
-      tabSection.classList.remove('hidden');
-      initializeGallery();
-      devIdInput.value = '';
+      if (foundProfile || email.includes('@')) {
+        // Generate and "send" verification code
+        generatedVerificationCode = generateVerificationCode();
+        verificationEmail = email;
+        
+        // Show success message (in real app, would send email)
+        forgotPasswordSection.classList.add('hidden');
+        verificationSection.classList.remove('hidden');
+
+        // Simulate sending code
+        console.log('Verification code:', generatedVerificationCode);
+      } else {
+        showError('email-error', 'Email not found in our system');
+      }
+    });
+
+    resendCodeBtn.addEventListener('click', () => {
+      generatedVerificationCode = generateVerificationCode();
+      console.log('New verification code:', generatedVerificationCode);
+      
+      const toastMessage = document.getElementById('toast-message');
+      toastMessage.textContent = 'Verification code resent to your email!';
+      document.getElementById('success-toast').classList.remove('hidden');
+      setTimeout(() => document.getElementById('success-toast').classList.add('hidden'), 3000);
+    });
+
+    verificationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors();
+      
+      const code = verificationCodeInput.value.trim();
+      const newPassword = newPasswordInput.value.trim();
+      const confirmPassword = confirmPasswordInput.value.trim();
+      
+      if (!code) {
+        showError('code-error', 'Please enter the verification code');
+        return;
+      }
+      
+      if (code !== generatedVerificationCode) {
+        showError('code-error', 'Incorrect verification code');
+        return;
+      }
+      
+      if (!newPassword) {
+        showError('new-pass-error', 'Please enter a new password');
+        return;
+      }
+      
+      if (newPassword.length < 6) {
+        showError('new-pass-error', 'Password must be at least 6 characters');
+        return;
+      }
+      
+      if (newPassword !== confirmPassword) {
+        showError('confirm-pass-error', 'Passwords do not match');
+        return;
+      }
+
+      // Find and update profile
+      for (let username in allProfiles) {
+        if (allProfiles[username].email === verificationEmail) {
+          const updatedProfile = {
+            ...allProfiles[username],
+            password_hash: simplePasswordHash(newPassword)
+          };
+
+          const result = await window.dataSdk.update(updatedProfile);
+          if (result.isOk) {
+            allProfiles[username] = updatedProfile;
+            
+            // Reset form and go back to login
+            loginSection.classList.remove('hidden');
+            verificationSection.classList.add('hidden');
+            verificationCodeInput.value = '';
+            newPasswordInput.value = '';
+            confirmPasswordInput.value = '';
+            forgotEmailInput.value = '';
+            usernameInput.value = '';
+            passwordInput.value = '';
+
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = 'Password reset successfully! Please login.';
+            document.getElementById('success-toast').classList.remove('hidden');
+            setTimeout(() => document.getElementById('success-toast').classList.add('hidden'), 3000);
+          }
+          break;
+        }
+      }
     });
 
     // ==================== LOGOUT ====================
     logoutBtn.addEventListener('click', () => {
-      currentDevId = '';
+      currentUsername = '';
       currentProfile = null;
       images = [];
       isLoggedIn = false;
@@ -552,17 +1142,6 @@
 
     // ==================== PROFILE DATA LOADING ====================
     function loadProfileData(profile) {
-      currentProfile = profile;
-
-      // Update view mode
-      document.getElementById('profile-name').textContent = profile.profile_name;
-      document.getElementById('profile-title').textContent = profile.profile_title;
-      document.getElementById('profile-bio').textContent = profile.profile_bio;
-      document.getElementById('header-name').textContent = profile.profile_name;
-      document.getElementById('footer-name').textContent = profile.profile_name;
-      document.getElementById('gallery-title').textContent = profile.gallery_title;
-
-      // Update customize mode
       document.getElementById('customize-name').value = profile.profile_name;
       document.getElementById('customize-title').value = profile.profile_title;
       document.getElementById('customize-bio').value = profile.profile_bio;
@@ -584,6 +1163,7 @@
       viewMode.classList.add('hidden');
       customizeBtn.classList.add('active');
       viewBtn.classList.remove('active');
+      loadProfileData(currentProfile);
     });
 
     // ==================== GALLERY LOGIC ====================
@@ -655,17 +1235,6 @@
         galleryGrid.innerHTML = '';
         emptyState.classList.remove('hidden');
         pagination.classList.add('hidden');
-
-        const emptyTitle = document.getElementById('empty-title');
-        const emptyMessage = document.getElementById('empty-message');
-
-        if (searchQuery && images.length > 0) {
-          emptyTitle.textContent = 'No matches found';
-          emptyMessage.textContent = `No images match "${searchQuery}". Try a different search term.`;
-        } else {
-          emptyTitle.textContent = 'No images found';
-          emptyMessage.textContent = 'Upload your first image to start building your gallery!';
-        }
         return;
       }
 
@@ -680,8 +1249,9 @@
               <p class="text-white/60 text-xs">${formatDate(img.uploadedAt)}</p>
             </div>
             <button 
-              class="absolute top-3 right-3 w-8 h-8 rounded-lg glass-dark flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/50"
+              class="absolute top-3 right-3 w-8 h-8 rounded-lg glass-dark flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500/50 active:bg-red-500/70 group-active:opacity-100"
               onclick="deleteImage('${img.id}')"
+              style="min-height: 44px; min-width: 44px;"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -690,12 +1260,6 @@
           </div>
         </div>
       `).join('');
-
-      document.querySelectorAll('.gallery-card').forEach(card => {
-        const deleteBtn = card.querySelector('button');
-        card.addEventListener('mouseenter', () => deleteBtn.style.opacity = '1');
-        card.addEventListener('mouseleave', () => deleteBtn.style.opacity = '0');
-      });
 
       if (totalPages > 1) {
         pagination.classList.remove('hidden');
@@ -729,7 +1293,7 @@
         const isActive = page === currentPage;
         return `
           <button 
-            class="pagination-btn w-10 h-10 rounded-xl flex items-center justify-center ${isActive ? 'glass bg-white/20' : 'glass-dark'}"
+            class="pagination-btn w-10 h-10 rounded-xl flex items-center justify-center ${isActive ? 'glass bg-white/20' : 'glass-dark'} min-h-[44px] min-w-[44px]"
             onclick="goToPage(${page})"
           >
             ${page}
@@ -749,7 +1313,7 @@
         <div class="relative aspect-square rounded-lg overflow-hidden group">
           <img src="${img.src}" alt="${img.name}" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
-            <button onclick="deleteImage('${img.id}')" class="text-white hover:text-red-400">
+            <button onclick="deleteImage('${img.id}')" class="text-white hover:text-red-400 active:text-red-300 min-h-[44px] min-w-[44px] flex items-center justify-center">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
               </svg>
@@ -810,8 +1374,7 @@
 
       if (result.isOk) {
         currentProfile = updatedProfile;
-        allProfiles[currentDevId] = updatedProfile;
-        loadProfileData(updatedProfile);
+        allProfiles[currentUsername] = updatedProfile;
         
         toastMessage.textContent = 'Profile settings saved successfully!';
         successToast.classList.remove('hidden');
@@ -858,5 +1421,5 @@
       renderGallery();
     })();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cbcfb34b21eae62',t:'MTc3MDc0MDkyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
