@@ -46,10 +46,17 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
-    .gradient-bg {
-      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    }
+   .gradient-bg {
+  /* This adds a dark overlay so your text stays readable, then the image behind it */
+  background: linear-gradient(rgba(15, 12, 41, 0.8), rgba(48, 43, 99, 0.8)), 
+              url('https://raw.githubusercontent.com/RohitPhogat222/liforawellness.index.html/main/Screenshot%202025-03-07%20193036.png');
+  
+  /* These lines ensure the image covers the whole screen and doesn't scroll */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
     
     .blob {
       position: absolute;
