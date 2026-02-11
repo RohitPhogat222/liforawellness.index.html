@@ -755,15 +755,29 @@
     let generatedVerificationCode = '';
     let isDropdownOpen = false;
 
-    // ==================== DATA SDK HANDLER ====================
-    const dataHandler = {
-      onDataChanged(data) {
-        allProfiles = {};
-        data.forEach(profile => {
-          allProfiles[profile.username] = profile;
-        });
-      }
-    };
+   // --- REPLACEMENT FOR MISSING DATA SDK (Use this for GitHub Pages) ---
+window.dataSdk = {
+    init: async (handler) => {
+        // Load data from LocalStorage if it exists
+        const saved = localStorage.getItem('lifora_users');
+        if(saved) handler.onDataChanged(JSON.parse(saved));
+        return { isOk: true };
+    },
+    create: async (profile) => {
+        let profiles = JSON.parse(localStorage.getItem('lifora_users') || "[]");
+        profiles.push(profile);
+        localStorage.setItem('lifora_users', JSON.stringify(profiles));
+        return { isOk: true };
+    },
+    update: async (profile) => {
+        let profiles = JSON.parse(localStorage.getItem('lifora_users') || "[]");
+        const index = profiles.findIndex(p => p.username === profile.username);
+        if (index !== -1) profiles[index] = profile;
+        localStorage.setItem('lifora_users', JSON.stringify(profiles));
+        return { isOk: true };
+    }
+};
+// -------------------------------------------------------------------
 
     // ==================== DOM ELEMENTS ====================
     const loginModal = document.getElementById('login-modal');
