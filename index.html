@@ -55,6 +55,8 @@
     }
     
    .gradient-bg {
+      /* Added Fallback Background Color */
+      background-color: #302b63; 
       background: linear-gradient(rgba(15, 12, 41, 0.8), rgba(48, 43, 99, 0.8)), 
                   url('https://raw.githubusercontent.com/RohitPhogat222/liforawellness.index.html/main/Screenshot%202025-03-07%20193036.png');
       background-size: cover;
@@ -154,7 +156,6 @@
    
    <!-- Login / Register / Reset Modal -->
    <div id="login-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop bg-black/70" style="backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
-    <!-- ... (Login modal content preserved) ... -->
     <div class="glass modal-content rounded-3xl p-8 sm:p-12 w-full max-w-md max-h-screen overflow-y-auto relative">
         <button id="close-modal-btn" class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center z-10"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
         <div id="login-section" class="slide-right">
@@ -230,10 +231,41 @@
           <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors first:rounded-t-xl" onclick="return handleNavLink(event, 'about')"> <span>ℹ️</span> <span>About Our Company</span> </a> 
           <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors" onclick="return handleNavLink(event, 'social')"> <span>👥</span> <span>Our Social Group</span> </a> 
           <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors" onclick="return handleNavLink(event, 'anime')"> <span>🎨</span> <span>Anime &amp; Animated Wallpapers</span> </a> 
+          <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors" onclick="return handleNavLink(event, 'chatbot')"> 
+            <div class="w-6 h-6 rounded-full overflow-hidden flex-shrink-0 border border-white/30 bg-black/50">
+             <img src="Gemini_Generated_Image_drjjmqdrjjmqdrjj.jpg" alt="AI" class="w-full h-full object-cover">
+            </div>
+            <span>AI Chatbot</span> 
+          </a>
           <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors last:rounded-b-xl" onclick="return handleNavLink(event, 'support')"> <span>🆘</span> <span>Customer Support</span> </a>
          </nav>
         </div>
        </div><!-- Right Side Buttons -->
+       
+       <!-- MOVED BULK ACTIONS TOOLBAR TO HEADER -->
+       <div id="bulk-actions" class="hidden flex-1 flex justify-center items-center gap-2 animate-in fade-in slide-in-from-top-4 duration-300">
+            <label class="flex items-center gap-2 cursor-pointer glass-dark px-3 py-2 rounded-lg text-sm hover:bg-white/10 select-none">
+                <input type="checkbox" id="select-all-checkbox" class="w-4 h-4 rounded border-white/30 text-blue-500 focus:ring-offset-0 focus:ring-blue-500 bg-white/10 cursor-pointer">
+                <span class="text-xs sm:text-sm font-medium">All</span>
+            </label>
+            <button onclick="deselectAll()" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-white/10 text-white/80 transition-colors flex items-center gap-2" title="Deselect All">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <button onclick="handleNavLink(event, 'chatbot')" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-purple-500/20 text-purple-300 transition-colors flex items-center gap-2" title="Analyze with AI">
+                <div class="w-5 h-5 rounded-full overflow-hidden flex-shrink-0 border border-white/30">
+                    <img src="Gemini_Generated_Image_drjjmqdrjjmqdrjj.jpg" alt="AI" class="w-full h-full object-cover">
+                </div>
+                <span class="hidden sm:inline">Ask AI</span>
+            </button>
+            <button id="download-selected-btn" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-blue-500/20 text-blue-300 transition-colors flex items-center gap-2" title="Download Selected">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                <span class="bg-blue-500/20 px-1.5 rounded text-xs" id="selected-count-display">0</span>
+            </button>
+            <button id="delete-selected-btn" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-red-500/20 text-red-300 transition-colors flex items-center gap-2" title="Delete Selected">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+         </div>
+
        <nav class="flex items-center justify-end gap-2 sm:gap-4 flex-shrink-0 ml-auto">
         <button id="top-subscribe-btn" class="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold shadow-lg flex items-center gap-2 min-h-[44px] transition-all hover:scale-105 active:scale-95">
          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
@@ -328,26 +360,6 @@
           <input type="file" id="quick-file-input" accept="image/*" multiple class="hidden">
          </label>
 
-         <!-- BULK ACTIONS TOOLBAR -->
-         <div id="bulk-actions" class="hidden flex items-center gap-2 animate-in fade-in slide-in-from-left-4 duration-300">
-            <div class="h-6 w-px bg-white/20 mx-1"></div>
-            <label class="flex items-center gap-2 cursor-pointer glass-dark px-3 py-2 rounded-lg text-sm hover:bg-white/10 select-none">
-                <input type="checkbox" id="select-all-checkbox" class="w-4 h-4 rounded border-white/30 text-blue-500 focus:ring-offset-0 focus:ring-blue-500 bg-white/10 cursor-pointer">
-                <span class="text-xs sm:text-sm font-medium">All</span>
-            </label>
-            <button onclick="deselectAll()" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-white/10 text-white/80 transition-colors flex items-center gap-2" title="Deselect All">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                <span class="hidden sm:inline">Deselect</span>
-            </button>
-            <button id="download-selected-btn" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-blue-500/20 text-blue-300 transition-colors flex items-center gap-2" title="Download Selected">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                <span class="hidden sm:inline">Download</span> <span class="bg-blue-500/20 px-1.5 rounded text-xs" id="selected-count-display">0</span>
-            </button>
-            <button id="delete-selected-btn" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-red-500/20 text-red-300 transition-colors flex items-center gap-2" title="Delete Selected">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            </button>
-         </div>
-
          <!-- Clear All Button -->
          <button id="clear-all-btn" onclick="clearAllImages()" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-red-500/20 text-red-300 transition-colors flex items-center gap-2" title="Delete All Images">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
@@ -380,7 +392,6 @@
       </div>
      </section><!-- Contact Section -->
      <section id="contact" class="py-12 px-4 sm:px-6">
-      <!-- ... (Contact content preserved) ... -->
       <div class="max-w-3xl mx-auto">
        <div class="glass rounded-3xl p-6 sm:p-10 text-center">
         <h2 class="heading-font text-2xl sm:text-3xl font-bold mb-4">Let's Connect</h2>
@@ -484,16 +495,42 @@
   <div id="comments-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
   <div id="comments-drawer" class="fixed inset-y-0 right-0 w-full sm:w-[450px] glass border-l border-white/20 z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
       <div class="p-6 border-b border-white/10 flex justify-between items-center bg-black/20">
-          <h3 class="font-bold text-xl text-white heading-font flex items-center gap-2"><span>💬</span> Community Comments</h3>
+          <h3 class="font-bold text-xl text-white heading-font flex items-center gap-2"><span>💬</span> Social Hub</h3>
           <button id="close-comments-btn" class="text-white/60 hover:text-white hover:rotate-90 transition-all duration-300"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
       </div>
-      <div id="comments-list" class="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent"></div>
-      <div class="p-6 bg-black/30 border-t border-white/10 backdrop-blur-md">
-          <div class="flex flex-col gap-3">
-              <textarea id="comment-input" rows="3" class="w-full glass-dark rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder-white/40 resize-none" placeholder="Share your thoughts with the community..."></textarea>
-              <div class="flex justify-between items-center">
-                  <span class="text-xs text-white/40">Press Enter to post, Shift+Enter for new line</span>
-                  <button id="send-comment-btn" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl px-6 py-2.5 font-semibold transition-all shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95"><span>Post</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg></button>
+      
+      <!-- TAB SWITCHER -->
+      <div class="flex bg-black/40 p-1 mx-6 rounded-xl mt-2 mb-2">
+          <button id="tab-community" class="flex-1 py-2 rounded-lg text-sm font-semibold transition-all bg-white/20 text-white shadow-sm" onclick="switchDrawerTab('community')">Community</button>
+          <button id="tab-ai" class="flex-1 py-2 rounded-lg text-sm font-semibold transition-all text-white/50 hover:bg-white/5" onclick="switchDrawerTab('ai')">AI Assistant</button>
+      </div>
+
+      <!-- VIEW 1: COMMUNITY -->
+      <div id="view-community" class="flex-1 flex flex-col min-h-0 transition-opacity duration-300">
+          <div id="comments-list" class="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent"></div>
+          <div class="p-6 bg-black/30 border-t border-white/10 backdrop-blur-md">
+              <div class="flex flex-col gap-3">
+                  <textarea id="comment-input" rows="3" class="w-full glass-dark rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all placeholder-white/40 resize-none" placeholder="Share your thoughts..."></textarea>
+                  <div class="flex justify-between items-center">
+                      <span class="text-xs text-white/40">Public comment</span>
+                      <button id="send-comment-btn" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl px-6 py-2.5 font-semibold transition-all shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95"><span>Post</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg></button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- VIEW 2: AI CHATBOT -->
+      <div id="view-ai" class="hidden flex-1 flex flex-col min-h-0 transition-opacity duration-300">
+          <div id="ai-chat-list" class="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+              <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-full overflow-hidden border border-white/30 flex-shrink-0"><img src="Gemini_Generated_Image_drjjmqdrjjmqdrjj.jpg" alt="AI" class="w-full h-full object-cover"></div>
+                  <div class="glass-dark rounded-2xl rounded-tl-none p-3 text-sm text-white/90 max-w-[85%]">Hello! I'm the Lifora AI. Ask me about our gallery, renewable energy projects, or how to navigate the site! 🤖</div>
+              </div>
+          </div>
+          <div class="p-6 bg-black/30 border-t border-white/10 backdrop-blur-md">
+              <div class="flex items-center gap-2">
+                  <input type="text" id="ai-input" class="flex-1 glass-dark rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder-white/40" placeholder="Ask AI anything..." onkeydown="if(event.key === 'Enter') sendAiMessage()">
+                  <button onclick="sendAiMessage()" class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white rounded-xl p-3 font-semibold transition-all shadow-lg flex items-center justify-center hover:scale-105 active:scale-95"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></button>
               </div>
           </div>
       </div>
@@ -728,10 +765,22 @@
     // ==================== 3D MASCOT & NAV LOGIC ====================
     window.handleNavLink = function(e, section) {
       e.preventDefault();
-      if (typeof closeDropdown === 'function') closeDropdown();
+      
+      // FIX: robust check for closeDropdown
+      if (typeof window.closeDropdown === 'function') {
+          window.closeDropdown();
+      }
+
       if (section === 'social') { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
       if (section === 'about') { document.getElementById('main-footer')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); return false; }
       if (section === 'anime') { document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); return false; }
+      if (section === 'chatbot') {
+          // Open comments drawer directly to AI tab
+          const commentsToggle = document.getElementById('comments-toggle-btn');
+          if(commentsToggle) commentsToggle.click();
+          if(typeof window.switchDrawerTab === 'function') window.switchDrawerTab('ai');
+          return false;
+      }
       if (section === 'support') {
         document.getElementById('main-footer')?.scrollIntoView({ behavior: 'smooth', block: 'end' });
         setTimeout(() => {
@@ -847,7 +896,7 @@
     const statImages = document.getElementById('stat-images');
     const previewCount = document.getElementById('preview-count');
     
-    // Bulk Action Elements
+    // Bulk Action Elements (Moved to Header)
     const bulkActions = document.getElementById('bulk-actions');
     const clearAllBtn = document.getElementById('clear-all-btn');
     const selectAllCheckbox = document.getElementById('select-all-checkbox');
@@ -1138,6 +1187,15 @@
     const commentInput = document.getElementById('comment-input');
     const sendCommentBtn = document.getElementById('send-comment-btn');
     const commentsList = document.getElementById('comments-list');
+    
+    // AI Chat Elements
+    const tabCommunity = document.getElementById('tab-community');
+    const tabAi = document.getElementById('tab-ai');
+    const viewCommunity = document.getElementById('view-community');
+    const viewAi = document.getElementById('view-ai');
+    const aiInput = document.getElementById('ai-input');
+    const aiChatList = document.getElementById('ai-chat-list');
+
     let localComments = JSON.parse(localStorage.getItem('lifora_comments')) || [{ text: "Welcome to the community! 👋", author: "System", time: new Date().toLocaleDateString() }];
 
     function openComments() { commentsOverlay.classList.remove('hidden'); setTimeout(() => { commentsOverlay.classList.remove('opacity-0'); commentsDrawer.classList.remove('translate-x-full'); }, 10); }
@@ -1146,6 +1204,30 @@
     if(closeCommentsBtn) closeCommentsBtn.addEventListener('click', closeComments);
     if(commentsOverlay) commentsOverlay.addEventListener('click', closeComments);
 
+    // --- Tab Switching Logic ---
+    window.switchDrawerTab = function(tab) {
+        if (tab === 'community') {
+            tabCommunity.classList.add('bg-white/20', 'text-white', 'shadow-sm');
+            tabCommunity.classList.remove('text-white/50', 'hover:bg-white/5');
+            
+            tabAi.classList.add('text-white/50', 'hover:bg-white/5');
+            tabAi.classList.remove('bg-white/20', 'text-white', 'shadow-sm');
+            
+            viewCommunity.classList.remove('hidden');
+            viewAi.classList.add('hidden');
+        } else {
+            tabAi.classList.add('bg-white/20', 'text-white', 'shadow-sm');
+            tabAi.classList.remove('text-white/50', 'hover:bg-white/5');
+            
+            tabCommunity.classList.add('text-white/50', 'hover:bg-white/5');
+            tabCommunity.classList.remove('bg-white/20', 'text-white', 'shadow-sm');
+            
+            viewAi.classList.remove('hidden');
+            viewCommunity.classList.add('hidden');
+        }
+    };
+
+    // --- Community Comments Logic ---
     function renderComments() {
         if(!commentsList) return;
         commentsList.innerHTML = localComments.map(c => `
@@ -1158,6 +1240,7 @@
             </div>`).join('');
         commentsList.scrollTop = commentsList.scrollHeight;
     }
+    
     function postComment() {
         const text = commentInput.value.trim();
         if(!text) return;
@@ -1167,6 +1250,56 @@
     }
     if(sendCommentBtn) sendCommentBtn.addEventListener('click', postComment);
     renderComments();
+
+    // --- AI Chat Logic ---
+    window.sendAiMessage = function() {
+        const text = aiInput.value.trim();
+        if(!text) return;
+
+        // 1. Add User Message
+        const userDiv = document.createElement('div');
+        userDiv.className = 'flex items-end justify-end gap-2 animate-in fade-in slide-in-from-bottom-2';
+        userDiv.innerHTML = `
+            <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl rounded-tr-none p-3 text-sm text-white max-w-[85%] shadow-lg">
+                ${text}
+            </div>
+        `;
+        aiChatList.appendChild(userDiv);
+        aiInput.value = '';
+        aiChatList.scrollTop = aiChatList.scrollHeight;
+
+        // 2. Simulate AI Typing/Response
+        setTimeout(() => {
+            const aiDiv = document.createElement('div');
+            aiDiv.className = 'flex items-start gap-3 animate-in fade-in slide-in-from-bottom-2';
+            
+            // Context-aware response logic
+            let response = "I'm still learning about the website, but feel free to explore the Gallery or Developer tools!";
+            const lowerText = text.toLowerCase();
+            
+            // Site-specific knowledge base
+            if(lowerText.includes('hello') || lowerText.includes('hi')) response = "Hello! I am the Lifora AI Assistant. How can I help you navigate the website today?";
+            else if(lowerText.includes('upload')) response = "To upload images, go to the 'Multimedia Gallery' section and click the 'Upload' button in the top right corner. We support JPG, PNG, and GIF formats.";
+            else if(lowerText.includes('delete') || lowerText.includes('remove')) response = "You can delete images by selecting them using the checkboxes and clicking 'Delete Selected' in the toolbar, or by hovering over an image and clicking the trash icon.";
+            else if(lowerText.includes('rohit') || lowerText.includes('founder')) response = "Rohit Phogat is the visionary founder behind Lifora Wellness. He specializes in blending Animation Arts with Sustainable Technology.";
+            else if(lowerText.includes('energy') || lowerText.includes('renewable')) response = "Lifora Wellness is dedicated to promoting renewable energy research and integrating sustainable practices into digital innovation.";
+            else if(lowerText.includes('anime')) response = "Our Anime & Animated Wallpapers section showcases curated digital art. You can find it in the navigation menu or scroll down to the gallery.";
+            else if(lowerText.includes('developer') || lowerText.includes('login')) response = "The Developer Login is located in the top right corner. If you don't have an account, you can register directly through the login modal.";
+            else if(lowerText.includes('subscribe') || lowerText.includes('premium')) response = "Our subscription features are coming soon! Stay tuned for exclusive premium content and advanced tools.";
+            else if(lowerText.includes('contact') || lowerText.includes('support')) response = "You can reach our support team at +91 70151 23151 or connect via WhatsApp, LinkedIn, and Email in the footer section.";
+
+            aiDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full overflow-hidden border border-white/30 flex-shrink-0">
+                    <img src="Gemini_Generated_Image_drjjmqdrjjmqdrjj.jpg" alt="AI" class="w-full h-full object-cover">
+                </div>
+                <div class="glass-dark rounded-2xl rounded-tl-none p-3 text-sm text-white/90 max-w-[85%] shadow-sm">
+                    ${response}
+                </div>
+            `;
+            aiChatList.appendChild(aiDiv);
+            aiChatList.scrollTop = aiChatList.scrollHeight;
+        }, 1000); // 1 second delay for realism
+    };
 
     const topSubscribeBtn = document.getElementById('top-subscribe-btn');
     const floatingSubscribeBtn = document.getElementById('floating-subscribe-btn');
