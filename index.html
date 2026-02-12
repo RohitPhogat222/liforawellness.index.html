@@ -859,6 +859,12 @@
     const lightbox = document.getElementById('image-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
+    // Pagination Elements
+    const pagination = document.getElementById('pagination');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageNumbers = document.getElementById('page-numbers');
+
     function initializeGallery() { images = []; selectedImageIds.clear(); currentPage = 1; renderGallery(); updateStats(); updateBulkUI(); }
     
     function handleImageUpload(e) {
@@ -1002,12 +1008,83 @@
         }
     };
 
+    // --- PAGINATION FUNCTIONS ---
+    function renderPagination(totalPages) {
+      if(prevBtn) prevBtn.disabled = currentPage === 1;
+      if(nextBtn) nextBtn.disabled = currentPage === totalPages;
+
+      let pages = [];
+      if (totalPages <= 5) {
+        pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+      } else {
+        if (currentPage <= 3) {
+          pages = [1, 2, 3, '...', totalPages];
+        } else if (currentPage >= totalPages - 2) {
+          pages = [1, '...', totalPages - 2, totalPages - 1, totalPages];
+        } else {
+          pages = [1, '...', currentPage, '...', totalPages];
+        }
+      }
+
+      if(pageNumbers) {
+          pageNumbers.innerHTML = pages.map(page => {
+            if (page === '...') {
+              return `<span class="w-10 h-10 flex items-center justify-center text-white/40">...</span>`;
+            }
+            const isActive = page === currentPage;
+            return `
+              <button 
+                class="pagination-btn w-10 h-10 rounded-xl flex items-center justify-center ${isActive ? 'glass bg-white/20' : 'glass-dark'} min-h-[44px] min-w-[44px]"
+                onclick="goToPage(${page})"
+              >
+                ${page}
+              </button>
+            `;
+          }).join('');
+      }
+    }
+
+    window.goToPage = function(page) {
+      currentPage = page;
+      renderGallery();
+      document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if(prevBtn) prevBtn.addEventListener('click', () => { if (currentPage > 1) goToPage(currentPage - 1); });
+    if(nextBtn) nextBtn.addEventListener('click', () => { 
+        const totalPages = Math.ceil(getFilteredImages().length / imagesPerPage);
+        if (currentPage < totalPages) goToPage(currentPage + 1); 
+    });
+
     function renderGallery() {
         const filtered = getFilteredImages();
+        
+        // 1. Calculate Pagination
+        const totalPages = Math.ceil(filtered.length / imagesPerPage);
+        
+        // Safety check for current page
+        if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        // 2. Slice Images for Current Page
+        const startIndex = (currentPage - 1) * imagesPerPage;
+        const endIndex = startIndex + imagesPerPage;
+        const pageImages = filtered.slice(startIndex, endIndex);
+
+        // 3. Sync Checkbox
         if(selectAllCheckbox && filtered.length > 0) { selectAllCheckbox.checked = filtered.every(img => selectedImageIds.has(String(img.id))); }
-        if (filtered.length === 0) { galleryGrid.innerHTML = ''; emptyState.classList.remove('hidden'); return; }
+        
+        // 4. Handle Empty State
+        if (filtered.length === 0) { 
+            galleryGrid.innerHTML = ''; 
+            emptyState.classList.remove('hidden'); 
+            if(pagination) pagination.classList.add('hidden');
+            return; 
+        }
         emptyState.classList.add('hidden');
-        galleryGrid.innerHTML = filtered.slice(0, 8).map((img, index) => {
+        
+        // 5. Render Grid
+        galleryGrid.innerHTML = pageImages.map((img, index) => {
             const isSelected = selectedImageIds.has(String(img.id));
             return `
             <div class="gallery-card glass rounded-2xl overflow-hidden fade-in relative group ${isSelected ? 'ring-2 ring-blue-500 bg-blue-500/10' : ''}" style="animation-delay: ${index * 0.05}s">
@@ -1035,6 +1112,14 @@
                 </div>
             </div>`;
         }).join('');
+
+        // 6. Render Pagination UI
+        if (totalPages > 1) {
+            if(pagination) pagination.classList.remove('hidden');
+            renderPagination(totalPages);
+        } else {
+            if(pagination) pagination.classList.add('hidden');
+        }
     }
 
     // Toggle Tabs
