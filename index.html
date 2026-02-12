@@ -13,7 +13,7 @@
  
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    /* ... (Previous Styles preserved) ... */
+    /* ... (Styles preserved) ... */
     html, body {
       box-sizing: border-box;
       width: 100%;
@@ -154,148 +154,63 @@
    
    <!-- Login / Register / Reset Modal -->
    <div id="login-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop bg-black/70" style="backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
-    <div class="glass modal-content rounded-3xl p-8 sm:p-12 w-full max-w-md max-h-screen overflow-y-auto">
-        
-        <button id="close-modal-btn" class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
-
-        <!-- 1. Developer Login Section -->
+    <!-- ... (Login modal content preserved) ... -->
+    <div class="glass modal-content rounded-3xl p-8 sm:p-12 w-full max-w-md max-h-screen overflow-y-auto relative">
+        <button id="close-modal-btn" class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center z-10"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
         <div id="login-section" class="slide-right">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="heading-font text-2xl font-bold">Developer Login</h2>
-            </div>
-            <div class="info-banner rounded-lg p-4 mb-6">
-                <p class="text-sm text-white/80">📝 Please fill in the details to use the website as a developer</p>
-            </div>
+            <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">Developer Login</h2></div>
+            <div class="info-banner rounded-lg p-4 mb-6"><p class="text-sm text-white/80">📝 Please fill in the details to use the website as a developer</p></div>
             <form id="login-form" class="space-y-4">
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Username</label> 
-                    <input type="text" id="username-input" placeholder="Enter your username" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                    <div id="username-error" class="error-message hidden"></div>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Password</label> 
-                    <input type="password" id="password-input" placeholder="Enter your password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                    <div id="password-error" class="error-message hidden"></div>
-                </div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Username</label><input type="text" id="username-input" placeholder="Enter your username" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="username-error" class="error-message hidden"></div></div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Password</label><input type="password" id="password-input" placeholder="Enter your password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="password-error" class="error-message hidden"></div></div>
                 <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>🔓</span> <span>Login to Dashboard</span> </button>
             </form>
-            <div class="text-center mt-6">
-                <p class="text-white/60 text-sm mb-3">Forgot your password?</p>
-                <button id="forgot-password-btn" class="text-blue-400 hover:text-blue-300 active:text-blue-500 transition-colors text-sm underline"> Click here to reset </button>
-                <div class="mt-4 pt-4 border-t border-white/10">
-                    <p class="text-white/60 text-sm">Not registered? <button id="get-registered-btn" class="text-green-400 hover:text-green-300 active:text-green-500 transition-colors font-medium ml-1 hover:underline">Get registered</button></p>
-                </div>
+            <div class="text-center mt-6"><p class="text-white/60 text-sm mb-3">Forgot your password?</p><button id="forgot-password-btn" class="text-blue-400 hover:text-blue-300 active:text-blue-500 transition-colors text-sm underline"> Click here to reset </button>
+                <div class="mt-4 pt-4 border-t border-white/10"><p class="text-white/60 text-sm">Not registered? <button id="get-registered-btn" class="text-green-400 hover:text-green-300 active:text-green-500 transition-colors font-medium ml-1 hover:underline">Get registered</button></p></div>
             </div>
         </div>
-
-        <!-- 2. Registration Flow - Step 1: User Info -->
         <div id="register-step-1" class="hidden slide-right">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="heading-font text-2xl font-bold">User Registration</h2>
-                <button class="back-to-login text-white/50 hover:text-white text-sm">Back</button>
-            </div>
+            <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">User Registration</h2><button class="back-to-login text-white/50 hover:text-white text-sm">Back</button></div>
             <form id="reg-form-1" class="space-y-4">
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Username</label> 
-                    <input type="text" id="reg-username" placeholder="Choose a username" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Email ID or Phone No</label> 
-                    <input type="text" id="reg-contact" placeholder="Enter email or phone" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                    <div id="reg-error-1" class="error-message hidden"></div>
-                </div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Username</label><input type="text" id="reg-username" placeholder="Choose a username" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required></div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Email ID or Phone No</label><input type="text" id="reg-contact" placeholder="Enter email or phone" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="reg-error-1" class="error-message hidden"></div></div>
                 <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>📩</span> <span>Send OTP</span> </button>
             </form>
         </div>
-
-        <!-- 3. Registration Flow - Step 2: Verify OTP -->
         <div id="register-step-2" class="hidden slide-right">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="heading-font text-2xl font-bold">Verify OTP</h2>
-                <button class="back-to-login text-white/50 hover:text-white text-sm">Back</button>
-            </div>
+            <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">Verify OTP</h2><button class="back-to-login text-white/50 hover:text-white text-sm">Back</button></div>
             <p class="text-white/60 text-sm mb-4 text-center">OTP sent to your chosen address.</p>
-            <form id="reg-form-2" class="space-y-4">
-                <div class="form-group">
-                    <input type="text" id="reg-otp" placeholder="000000" maxlength="6" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none text-center verification-code" required>
-                    <div id="reg-error-2" class="error-message hidden"></div>
-                </div>
-                <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>✅</span> <span>Verify & Continue</span> </button>
-            </form>
+            <form id="reg-form-2" class="space-y-4"><div class="form-group"><input type="text" id="reg-otp" placeholder="000000" maxlength="6" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none text-center verification-code" required><div id="reg-error-2" class="error-message hidden"></div></div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>✅</span> <span>Verify & Continue</span> </button></form>
         </div>
-
-        <!-- 4. Registration Flow - Step 3: Create Password -->
         <div id="register-step-3" class="hidden slide-right">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="heading-font text-2xl font-bold">Create Password</h2>
-            </div>
+            <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">Create Password</h2></div>
             <form id="reg-form-3" class="space-y-4">
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Create Password</label> 
-                    <input type="password" id="reg-pass" placeholder="New password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Confirm Password</label> 
-                    <input type="password" id="reg-confirm-pass" placeholder="Confirm password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                    <div id="reg-error-3" class="error-message hidden"></div>
-                </div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Create Password</label><input type="password" id="reg-pass" placeholder="New password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required></div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Confirm Password</label><input type="password" id="reg-confirm-pass" placeholder="Confirm password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="reg-error-3" class="error-message hidden"></div></div>
                 <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>💾</span> <span>Confirm Registration</span> </button>
             </form>
         </div>
-
-        <!-- 5. Reset Flow - Step 1: Request OTP -->
         <div id="reset-step-1" class="hidden slide-right">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="heading-font text-2xl font-bold">Reset Your Password</h2>
-                <button class="back-to-login text-white/50 hover:text-white text-sm">Back</button>
-            </div>
-            <form id="reset-form-1" class="space-y-4">
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Email or Phone No</label> 
-                    <input type="text" id="reset-contact" placeholder="Enter registered contact" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                    <div id="reset-error-1" class="error-message hidden"></div>
-                </div>
-                <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>📧</span> <span>Send OTP</span> </button>
-            </form>
+            <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">Reset Your Password</h2><button class="back-to-login text-white/50 hover:text-white text-sm">Back</button></div>
+            <form id="reset-form-1" class="space-y-4"><div class="form-group"><label class="block text-sm font-medium mb-2">Email or Phone No</label><input type="text" id="reset-contact" placeholder="Enter registered contact" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="reset-error-1" class="error-message hidden"></div></div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>📧</span> <span>Send OTP</span> </button></form>
         </div>
-
-        <!-- 6. Reset Flow - Step 2: Verify OTP -->
         <div id="reset-step-2" class="hidden slide-right">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="heading-font text-2xl font-bold">Verify OTP</h2>
-                <button class="back-to-login text-white/50 hover:text-white text-sm">Back</button>
-            </div>
-            <form id="reset-form-2" class="space-y-4">
-                <div class="form-group">
-                    <input type="text" id="reset-otp" placeholder="000000" maxlength="6" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none text-center verification-code" required>
-                    <div id="reset-error-2" class="error-message hidden"></div>
-                </div>
-                <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>✅</span> <span>Confirm</span> </button>
-            </form>
+            <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">Verify OTP</h2><button class="back-to-login text-white/50 hover:text-white text-sm">Back</button></div>
+            <form id="reset-form-2" class="space-y-4"><div class="form-group"><input type="text" id="reset-otp" placeholder="000000" maxlength="6" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none text-center verification-code" required><div id="reset-error-2" class="error-message hidden"></div></div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>✅</span> <span>Confirm</span> </button></form>
         </div>
-
-        <!-- 7. Reset Flow - Step 3: Select New Password -->
         <div id="reset-step-3" class="hidden slide-right">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="heading-font text-2xl font-bold">Select New Password</h2>
-            </div>
-            <form id="reset-form-3" class="space-y-4">
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">New Password</label> 
-                    <input type="password" id="reset-pass" placeholder="New password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                </div>
-                <div class="form-group">
-                    <label class="block text-sm font-medium mb-2">Confirm New Password</label> 
-                    <input type="password" id="reset-confirm-pass" placeholder="Confirm new password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required>
-                    <div id="reset-error-3" class="error-message hidden"></div>
-                </div>
-                <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>💾</span> <span>Confirm</span> </button>
-            </form>
+            <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">Select New Password</h2></div>
+            <form id="reset-form-3" class="space-y-4"><div class="form-group"><label class="block text-sm font-medium mb-2">New Password</label><input type="password" id="reset-pass" placeholder="New password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required></div><div class="form-group"><label class="block text-sm font-medium mb-2">Confirm New Password</label><input type="password" id="reset-confirm-pass" placeholder="Confirm new password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="reset-error-3" class="error-message hidden"></div></div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>💾</span> <span>Confirm</span> </button></form>
         </div>
-
     </div>
+   </div>
+
+   <!-- IMAGE LIGHTBOX -->
+   <div id="image-lightbox" class="fixed inset-0 z-[60] hidden bg-black/90 flex items-center justify-center p-4 backdrop-blur-md opacity-0 transition-opacity duration-300" onclick="closeLightbox()">
+       <img id="lightbox-img" src="" class="max-h-[90vh] max-w-[90vw] rounded-lg shadow-2xl transition-transform duration-300 scale-95" onclick="event.stopPropagation()">
+       <button class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full p-2" onclick="closeLightbox()">
+           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+       </button>
    </div>
 
    <!-- Main Container -->
@@ -304,7 +219,6 @@
      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
       <div class="flex items-center justify-between gap-4">
        <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 relative">
-        <!-- Added ID and cursor-pointer to the logo container -->
         <div id="logo-icon-toggle" class="cursor-pointer w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-green-400 to-blue-500 transition-transform active:scale-95">
             <span class="text-xs sm:text-sm font-bold heading-font">LW</span>
         </div>
@@ -321,16 +235,14 @@
         </div>
        </div><!-- Right Side Buttons -->
        <nav class="flex items-center justify-end gap-2 sm:gap-4 flex-shrink-0 ml-auto">
-        <!-- New Top Subscribe Button -->
         <button id="top-subscribe-btn" class="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold shadow-lg flex items-center gap-2 min-h-[44px] transition-all hover:scale-105 active:scale-95">
          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
          <span class="hidden sm:inline">Subscription</span>
         </button>
-        <!-- Developer Control Panel -->
         <div id="dev-panel" class="hidden flex items-center gap-3">
          <div class="flex items-center gap-2 text-xs text-white/60 hidden sm:flex"><span class="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></span> <span id="dev-username-display" class="truncate max-w-[100px]">username</span>
          </div><button id="logout-btn" class="glass-dark px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-white/10 active:bg-white/20 transition-colors flex items-center gap-2 min-h-[44px]"> <span>🚪</span> <span class="hidden sm:inline">Logout</span> </button>
-        </div><!-- Login Button --> <button id="open-login-btn" class="glass-dark px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-white/10 active:bg-white/20 transition-colors flex items-center gap-2 min-h-[44px]"> <span>🔐</span> <span class="hidden sm:inline">Developer Login</span> </button>
+        </div><button id="open-login-btn" class="glass-dark px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-white/10 active:bg-white/20 transition-colors flex items-center gap-2 min-h-[44px]"> <span>🔐</span> <span class="hidden sm:inline">Developer Login</span> </button>
        </nav>
       </div>
      </div>
@@ -416,22 +328,32 @@
           <input type="file" id="quick-file-input" accept="image/*" multiple class="hidden">
          </label>
 
-         <!-- Bulk Actions Toolbar (Hidden by default) -->
+         <!-- BULK ACTIONS TOOLBAR -->
          <div id="bulk-actions" class="hidden flex items-center gap-2 animate-in fade-in slide-in-from-left-4 duration-300">
-            <div class="h-8 w-px bg-white/20 mx-1"></div>
-            <label class="flex items-center gap-2 cursor-pointer glass-dark px-3 py-2 rounded-lg text-sm hover:bg-white/10">
-                <input type="checkbox" id="select-all-checkbox" class="w-4 h-4 rounded border-white/30 text-blue-500 focus:ring-offset-0 focus:ring-blue-500 bg-white/10">
-                <span class="text-sm">All</span>
+            <div class="h-6 w-px bg-white/20 mx-1"></div>
+            <label class="flex items-center gap-2 cursor-pointer glass-dark px-3 py-2 rounded-lg text-sm hover:bg-white/10 select-none">
+                <input type="checkbox" id="select-all-checkbox" class="w-4 h-4 rounded border-white/30 text-blue-500 focus:ring-offset-0 focus:ring-blue-500 bg-white/10 cursor-pointer">
+                <span class="text-xs sm:text-sm font-medium">All</span>
             </label>
+            <button onclick="deselectAll()" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-white/10 text-white/80 transition-colors flex items-center gap-2" title="Deselect All">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <span class="hidden sm:inline">Deselect</span>
+            </button>
             <button id="download-selected-btn" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-blue-500/20 text-blue-300 transition-colors flex items-center gap-2" title="Download Selected">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-                <span class="hidden sm:inline">Download</span> (<span id="selected-count-display">0</span>)
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                <span class="hidden sm:inline">Download</span> <span class="bg-blue-500/20 px-1.5 rounded text-xs" id="selected-count-display">0</span>
             </button>
             <button id="delete-selected-btn" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-red-500/20 text-red-300 transition-colors flex items-center gap-2" title="Delete Selected">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                <span class="hidden sm:inline">Delete</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
             </button>
          </div>
+
+         <!-- Clear All Button -->
+         <button id="clear-all-btn" onclick="clearAllImages()" class="glass-dark px-3 py-2 rounded-lg text-sm font-medium hover:bg-red-500/20 text-red-300 transition-colors flex items-center gap-2" title="Delete All Images">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            <span class="hidden sm:inline">Clear All</span>
+         </button>
+
         </div><!-- Search Bar -->
         <div class="relative w-full sm:w-80"><input type="text" id="search-input" placeholder="Search images by name..." class="search-input w-full glass-dark rounded-xl px-5 py-3 pl-12 text-white placeholder-white/40 outline-none">
          <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -458,6 +380,7 @@
       </div>
      </section><!-- Contact Section -->
      <section id="contact" class="py-12 px-4 sm:px-6">
+      <!-- ... (Contact content preserved) ... -->
       <div class="max-w-3xl mx-auto">
        <div class="glass rounded-3xl p-6 sm:p-10 text-center">
         <h2 class="heading-font text-2xl sm:text-3xl font-bold mb-4">Let's Connect</h2>
@@ -591,14 +514,11 @@
     }
 
     function showSection(sectionId) {
-        // Hide all login-related sections
         ['login-section', 'register-step-1', 'register-step-2', 'register-step-3', 
          'reset-step-1', 'reset-step-2', 'reset-step-3'].forEach(id => {
             const el = document.getElementById(id);
             if(el) el.classList.add('hidden');
         });
-        
-        // Show target section
         const target = document.getElementById(sectionId);
         if(target) target.classList.remove('hidden');
         clearErrors();
@@ -624,9 +544,9 @@
 
     // ==================== STATE MANAGEMENT ====================
     let allProfiles = {};
-    let tempRegistrationData = {}; // Stores username/contact during registration
-    let tempResetContact = ''; // Stores email/phone during reset
-    let currentOtp = ''; // Mocks OTP
+    let tempRegistrationData = {};
+    let tempResetContact = '';
+    let currentOtp = '';
     let currentUsername = '';
     let currentProfile = null;
     let images = [];
@@ -671,183 +591,100 @@
       renderGallery();
     })();
 
-    // ==================== DOM ELEMENTS ====================
+    // ==================== DOM ELEMENTS & EVENT LISTENERS ====================
     const loginModal = document.getElementById('login-modal');
-    
-    // Login Elements
     const openLoginBtn = document.getElementById('open-login-btn');
     const closeModalBtn = document.getElementById('close-modal-btn');
     const loginForm = document.getElementById('login-form');
     const forgotPasswordBtn = document.getElementById('forgot-password-btn');
     const getRegisteredBtn = document.getElementById('get-registered-btn');
-    
-    // Registration Elements
     const regForm1 = document.getElementById('reg-form-1');
     const regForm2 = document.getElementById('reg-form-2');
     const regForm3 = document.getElementById('reg-form-3');
-    
-    // Reset Elements
     const resetForm1 = document.getElementById('reset-form-1');
     const resetForm2 = document.getElementById('reset-form-2');
     const resetForm3 = document.getElementById('reset-form-3');
 
-    // ==================== EVENT LISTENERS: MODAL & NAVIGATION ====================
-    
-    if (openLoginBtn) {
-        openLoginBtn.addEventListener('click', () => {
-            loginModal.classList.remove('hidden');
-            showSection('login-section');
-        });
-    }
+    if (openLoginBtn) openLoginBtn.addEventListener('click', () => { loginModal.classList.remove('hidden'); showSection('login-section'); });
+    if (closeModalBtn) closeModalBtn.addEventListener('click', () => { loginModal.classList.add('hidden'); });
+    if (getRegisteredBtn) getRegisteredBtn.addEventListener('click', () => { showSection('register-step-1'); });
+    if (forgotPasswordBtn) forgotPasswordBtn.addEventListener('click', () => { showSection('reset-step-1'); });
 
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', () => {
-            loginModal.classList.add('hidden');
-        });
-    }
-
-    // Handle "Get Registered" Click
-    if (getRegisteredBtn) {
-        getRegisteredBtn.addEventListener('click', () => {
-            showSection('register-step-1');
-        });
-    }
-
-    // Handle "Forgot Password" Click
-    if (forgotPasswordBtn) {
-        forgotPasswordBtn.addEventListener('click', () => {
-            showSection('reset-step-1');
-        });
-    }
-
-    // Handle all "Back" buttons
     document.querySelectorAll('.back-to-login').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSection('login-section');
-        });
+        btn.addEventListener('click', (e) => { e.preventDefault(); showSection('login-section'); });
     });
 
     // ==================== REGISTRATION LOGIC ====================
-    
-    // STEP 1: User Info
     regForm1.addEventListener('submit', (e) => {
         e.preventDefault();
         const username = document.getElementById('reg-username').value.trim();
         const contact = document.getElementById('reg-contact').value.trim();
-
-        if (allProfiles[username]) {
-            showError('reg-error-1', 'Username already exists!');
-            return;
-        }
-
-        // Generate Mock OTP
+        if (allProfiles[username]) { showError('reg-error-1', 'Username already exists!'); return; }
         currentOtp = Math.floor(100000 + Math.random() * 900000).toString();
         tempRegistrationData = { username, contact };
-        
-        // Simulate sending OTP
         alert(`LIFORA WELLNESS OTP: ${currentOtp}\n(In a real app, this is sent to ${contact})`);
-        
         showSection('register-step-2');
     });
 
-    // STEP 2: Verify OTP
     regForm2.addEventListener('submit', (e) => {
         e.preventDefault();
         const enteredOtp = document.getElementById('reg-otp').value.trim();
-        
-        if (enteredOtp !== currentOtp) {
-            showError('reg-error-2', 'Invalid OTP. Please try again.');
-            return;
-        }
-        
+        if (enteredOtp !== currentOtp) { showError('reg-error-2', 'Invalid OTP. Please try again.'); return; }
         showSection('register-step-3');
     });
 
-    // STEP 3: Create Password
     regForm3.addEventListener('submit', async (e) => {
         e.preventDefault();
         const pass = document.getElementById('reg-pass').value.trim();
         const confirmPass = document.getElementById('reg-confirm-pass').value.trim();
-
-        if (pass !== confirmPass) {
-            showError('reg-error-3', 'Passwords do not match!');
-            return;
-        }
-
+        if (pass !== confirmPass) { showError('reg-error-3', 'Passwords do not match!'); return; }
         const newProfile = {
             username: tempRegistrationData.username,
             password_hash: simplePasswordHash(pass),
-            email: tempRegistrationData.contact, // Using contact as email for simplicity
+            email: tempRegistrationData.contact,
             profile_name: 'New Developer',
             profile_title: 'Developer',
             profile_bio: 'New member of the Lifora community.',
             gallery_title: 'My Gallery',
             created_at: new Date().toISOString()
         };
-
         const result = await window.dataSdk.create(newProfile);
         if (result.isOk) {
             allProfiles[newProfile.username] = newProfile;
             alert('Registration Successful! Please login.');
             showSection('login-section');
-            // Pre-fill login
             document.getElementById('username-input').value = newProfile.username;
         }
     });
 
     // ==================== PASSWORD RESET LOGIC ====================
-
-    // STEP 1: Request OTP
     resetForm1.addEventListener('submit', (e) => {
         e.preventDefault();
         const contact = document.getElementById('reset-contact').value.trim();
-        
-        // Check if user exists with this contact
         const userExists = Object.values(allProfiles).find(p => p.email === contact);
-        
-        if (!userExists) {
-            showError('reset-error-1', 'Email/Phone not found in our records.');
-            return;
-        }
-
+        if (!userExists) { showError('reset-error-1', 'Email/Phone not found in our records.'); return; }
         tempResetContact = contact;
         currentOtp = Math.floor(100000 + Math.random() * 900000).toString();
-        
         alert(`LIFORA WELLNESS RESET OTP: ${currentOtp}`);
         showSection('reset-step-2');
     });
 
-    // STEP 2: Verify OTP
     resetForm2.addEventListener('submit', (e) => {
         e.preventDefault();
         const enteredOtp = document.getElementById('reset-otp').value.trim();
-        
-        if (enteredOtp !== currentOtp) {
-            showError('reset-error-2', 'Invalid OTP.');
-            return;
-        }
-        
+        if (enteredOtp !== currentOtp) { showError('reset-error-2', 'Invalid OTP.'); return; }
         showSection('reset-step-3');
     });
 
-    // STEP 3: Set New Password
     resetForm3.addEventListener('submit', async (e) => {
         e.preventDefault();
         const pass = document.getElementById('reset-pass').value.trim();
         const confirmPass = document.getElementById('reset-confirm-pass').value.trim();
-
-        if (pass !== confirmPass) {
-            showError('reset-error-3', 'Passwords do not match!');
-            return;
-        }
-
-        // Find the profile to update
+        if (pass !== confirmPass) { showError('reset-error-3', 'Passwords do not match!'); return; }
         const profile = Object.values(allProfiles).find(p => p.email === tempResetContact);
         if (profile) {
             const updatedProfile = { ...profile, password_hash: simplePasswordHash(pass) };
             const result = await window.dataSdk.update(updatedProfile);
-            
             if (result.isOk) {
                 allProfiles[profile.username] = updatedProfile;
                 alert('Password reset successful! Please login.');
@@ -856,24 +693,19 @@
         }
     });
 
-    // ==================== LOGIN LOGIC ====================
+    // ==================== LOGIN/LOGOUT LOGIC ====================
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const username = document.getElementById('username-input').value.trim();
         const password = document.getElementById('password-input').value.trim();
-        
         if (allProfiles[username] && allProfiles[username].password_hash === simplePasswordHash(password)) {
-            // Login Success
             currentUsername = username;
             currentProfile = allProfiles[username];
             isLoggedIn = true;
-            
-            // Update UI
             document.getElementById('dev-username-display').textContent = username;
             document.getElementById('open-login-btn').classList.add('hidden');
             document.getElementById('dev-panel').classList.remove('hidden');
             document.getElementById('tab-section').classList.remove('hidden');
-            
             loginModal.classList.add('hidden');
             initializeGallery();
         } else {
@@ -881,48 +713,30 @@
         }
     });
 
-    // ==================== LOGOUT LOGIC ====================
     document.getElementById('logout-btn').addEventListener('click', () => {
         currentUsername = '';
         currentProfile = null;
         isLoggedIn = false;
-        
         document.getElementById('open-login-btn').classList.remove('hidden');
         document.getElementById('dev-panel').classList.add('hidden');
         document.getElementById('tab-section').classList.add('hidden');
-        
         document.getElementById('view-mode').classList.remove('hidden');
         document.getElementById('customize-mode').classList.add('hidden');
-        
         renderGallery();
     });
 
     // ==================== 3D MASCOT & NAV LOGIC ====================
-    // (Preserved from previous implementation)
     window.handleNavLink = function(e, section) {
       e.preventDefault();
       if (typeof closeDropdown === 'function') closeDropdown();
-
-      if (section === 'social') {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return false;
-      }
-      if (section === 'about') {
-        document.getElementById('main-footer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return false;
-      }
-      if (section === 'anime') {
-        document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return false;
-      }
+      if (section === 'social') { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
+      if (section === 'about') { document.getElementById('main-footer')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); return false; }
+      if (section === 'anime') { document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); return false; }
       if (section === 'support') {
         document.getElementById('main-footer')?.scrollIntoView({ behavior: 'smooth', block: 'end' });
         setTimeout(() => {
              const phoneEl = document.getElementById('support-phone');
-             if(phoneEl) {
-                 phoneEl.classList.add('scale-110', 'brightness-150');
-                 setTimeout(() => phoneEl.classList.remove('scale-110', 'brightness-150'), 2000);
-             }
+             if(phoneEl) { phoneEl.classList.add('scale-110', 'brightness-150'); setTimeout(() => phoneEl.classList.remove('scale-110', 'brightness-150'), 2000); }
         }, 800);
         return false;
       }
@@ -948,14 +762,12 @@
         const logoGroup = new THREE.Group();
         const extrudeSettings = { depth: 0.3, bevelEnabled: true, bevelSegments: 3, steps: 2, bevelSize: 0.05, bevelThickness: 0.05 };
 
-        // Letter L
         const lShape = new THREE.Shape();
         lShape.moveTo(0, 0); lShape.lineTo(0, 2); lShape.lineTo(0.6, 2); lShape.lineTo(0.6, 0.6); lShape.lineTo(1.6, 0.6); lShape.lineTo(1.6, 0); lShape.lineTo(0, 0);
         const lGeo = new THREE.ExtrudeGeometry(lShape, extrudeSettings); lGeo.center(); 
         const lMat = new THREE.MeshPhongMaterial({ color: 0x4ade80, emissive: 0x22c55e, emissiveIntensity: 0.4, shininess: 100 });
         const meshL = new THREE.Mesh(lGeo, lMat); meshL.position.x = -0.6; logoGroup.add(meshL);
 
-        // Letter F
         const fShape = new THREE.Shape();
         fShape.moveTo(0, 0); fShape.lineTo(0, 2); fShape.lineTo(1.5, 2); fShape.lineTo(1.5, 1.4); fShape.lineTo(0.6, 1.4); fShape.lineTo(0.6, 1.1); fShape.lineTo(1.2, 1.1); fShape.lineTo(1.2, 0.6); fShape.lineTo(0.6, 0.6); fShape.lineTo(0.6, 0); fShape.lineTo(0, 0);
         const fGeo = new THREE.ExtrudeGeometry(fShape, extrudeSettings); fGeo.center();
@@ -1004,12 +816,9 @@
         });
     }
 
-    if (document.readyState === 'loading') {
-        window.addEventListener('DOMContentLoaded', () => { try { init3DMascot(); } catch(e) {} });
-    } else { try { init3DMascot(); } catch(e) {} }
+    if (document.readyState === 'loading') { window.addEventListener('DOMContentLoaded', () => { try { init3DMascot(); } catch(e) {} }); } else { try { init3DMascot(); } catch(e) {} }
 
     // ==================== GALLERY & NAV UI ====================
-    // (Consolidated helpers for gallery rendering, selection, etc.)
     const navMenuToggle = document.getElementById('nav-menu-toggle');
     const navDropdown = document.getElementById('nav-dropdown');
     const menuChevron = document.getElementById('menu-chevron');
@@ -1023,7 +832,7 @@
     window.closeDropdown = function() {
       isDropdownOpen = false; navDropdown.classList.add('hidden'); menuChevron.style.transform = 'rotate(0deg)';
     }
-    navMenuToggle.addEventListener('click', (e) => { e.preventDefault(); toggleDropdown(); });
+    if(navMenuToggle) navMenuToggle.addEventListener('click', (e) => { e.preventDefault(); toggleDropdown(); });
     if(logoIconToggle) logoIconToggle.addEventListener('click', (e) => { e.preventDefault(); toggleDropdown(); });
     document.addEventListener('click', (e) => {
       if (!navMenuToggle.contains(e.target) && !navDropdown.contains(e.target) && (!logoIconToggle || !logoIconToggle.contains(e.target))) { closeDropdown(); }
@@ -1038,14 +847,34 @@
     const statImages = document.getElementById('stat-images');
     const previewCount = document.getElementById('preview-count');
     
-    function initializeGallery() { images = []; currentPage = 1; renderGallery(); updateStats(); }
+    // Bulk Action Elements
+    const bulkActions = document.getElementById('bulk-actions');
+    const clearAllBtn = document.getElementById('clear-all-btn');
+    const selectAllCheckbox = document.getElementById('select-all-checkbox');
+    const downloadSelectedBtn = document.getElementById('download-selected-btn');
+    const deleteSelectedBtn = document.getElementById('delete-selected-btn');
+    const selectedCountDisplay = document.getElementById('selected-count-display');
+
+    // Lightbox Elements
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function initializeGallery() { images = []; selectedImageIds.clear(); currentPage = 1; renderGallery(); updateStats(); updateBulkUI(); }
+    
     function handleImageUpload(e) {
       const files = Array.from(e.target.files);
       files.forEach(file => {
         if (file.type.startsWith('image/')) {
           const reader = new FileReader();
           reader.onload = (event) => {
-            images.push({ id: Date.now() + Math.random(), name: file.name.replace(/\.[^/.]+$/, ''), src: event.target.result, uploadedAt: new Date().toISOString() });
+            images.push({ 
+                id: Date.now() + Math.random(), 
+                name: file.name.replace(/\.[^/.]+$/, ''), 
+                src: event.target.result, 
+                uploadedAt: new Date().toISOString(),
+                likes: Math.floor(Math.random() * 50), 
+                isLiked: false
+            });
             currentPage = 1; renderGallery(); updateStats();
           };
           reader.readAsDataURL(file);
@@ -1061,22 +890,151 @@
     function formatDate(dateString) { const date = new Date(dateString); return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
     function updateStats() { if(statImages) statImages.textContent = images.length; if(previewCount) previewCount.textContent = images.length; }
 
+    function updateBulkUI() {
+        const count = selectedImageIds.size;
+        if(selectedCountDisplay) selectedCountDisplay.textContent = count;
+        if (count > 0) {
+            if(bulkActions) bulkActions.classList.remove('hidden');
+            if(clearAllBtn) clearAllBtn.classList.add('hidden'); 
+        } else {
+            if(bulkActions) bulkActions.classList.add('hidden');
+            if(clearAllBtn) clearAllBtn.classList.remove('hidden');
+            if(selectAllCheckbox) selectAllCheckbox.checked = false;
+        }
+    }
+
+    window.toggleSelection = function(id) {
+        const strId = String(id);
+        if (selectedImageIds.has(strId)) { selectedImageIds.delete(strId); } else { selectedImageIds.add(strId); }
+        renderGallery(); updateBulkUI();
+    };
+
+    window.deselectAll = function() {
+        selectedImageIds.clear();
+        renderGallery();
+        updateBulkUI();
+    };
+
+    window.viewImage = function(id) {
+        const img = images.find(img => String(img.id) === String(id));
+        if(img) {
+            lightboxImg.src = img.src;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+        }
+    }
+
+    window.closeLightbox = function() {
+        lightbox.classList.add('opacity-0');
+        lightboxImg.classList.remove('scale-100');
+        lightboxImg.classList.add('scale-95');
+        setTimeout(() => {
+            lightbox.classList.add('hidden');
+            lightboxImg.src = '';
+        }, 300);
+    }
+
+    if(selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', (e) => {
+            const visibleImages = getFilteredImages();
+            if (e.target.checked) { visibleImages.forEach(img => selectedImageIds.add(String(img.id))); } 
+            else { visibleImages.forEach(img => selectedImageIds.delete(String(img.id))); }
+            renderGallery(); updateBulkUI();
+        });
+    }
+
+    if(downloadSelectedBtn) {
+        downloadSelectedBtn.addEventListener('click', () => {
+            if (selectedImageIds.size === 0) return;
+            const selectedImages = images.filter(img => selectedImageIds.has(String(img.id)));
+            selectedImages.forEach((img, index) => {
+                setTimeout(() => {
+                    const link = document.createElement('a'); link.href = img.src; link.download = `${img.name || 'image'}.png`;
+                    document.body.appendChild(link); link.click(); document.body.removeChild(link);
+                }, index * 300); 
+            });
+        });
+    }
+
+    if(deleteSelectedBtn) {
+        deleteSelectedBtn.addEventListener('click', () => {
+            if (selectedImageIds.size === 0) return;
+            if(confirm(`Delete ${selectedImageIds.size} selected images?`)) {
+                images = images.filter(img => !selectedImageIds.has(String(img.id)));
+                selectedImageIds.clear(); renderGallery(); updateStats(); updateBulkUI();
+            }
+        });
+    }
+
+    window.deleteImage = function(id) {
+        if(confirm('Are you sure you want to delete this image?')) {
+            const targetId = String(id);
+            images = images.filter(img => String(img.id) !== targetId);
+            selectedImageIds.delete(targetId);
+            renderGallery(); updateStats(); updateBulkUI();
+        }
+    };
+
+    window.clearAllImages = function() {
+        if(images.length === 0) return alert("No images to clear!");
+        if(confirm('Are you sure you want to delete ALL images? This action cannot be undone.')) {
+            images = []; selectedImageIds.clear(); renderGallery(); updateStats(); updateBulkUI();
+        }
+    };
+
+    window.editImageName = function(id) {
+        const img = images.find(img => String(img.id) === String(id));
+        if(img) {
+            const newName = prompt("Enter new name for the image:", img.name);
+            if(newName && newName.trim() !== "") { img.name = newName.trim(); renderGallery(); }
+        }
+    };
+
+    window.toggleLike = function(id) {
+        const img = images.find(img => String(img.id) === String(id));
+        if(img) {
+            if(img.isLiked) { img.likes--; img.isLiked = false; } else { img.likes++; img.isLiked = true; }
+            renderGallery();
+        }
+    };
+
     function renderGallery() {
         const filtered = getFilteredImages();
-        if (filtered.length === 0) {
-            galleryGrid.innerHTML = ''; emptyState.classList.remove('hidden'); return;
-        }
+        if(selectAllCheckbox && filtered.length > 0) { selectAllCheckbox.checked = filtered.every(img => selectedImageIds.has(String(img.id))); }
+        if (filtered.length === 0) { galleryGrid.innerHTML = ''; emptyState.classList.remove('hidden'); return; }
         emptyState.classList.add('hidden');
-        galleryGrid.innerHTML = filtered.slice(0, 8).map((img, index) => `
-            <div class="gallery-card glass rounded-2xl overflow-hidden fade-in relative group" style="animation-delay: ${index * 0.05}s">
-                <div class="relative aspect-square overflow-hidden">
-                    <img src="${img.src}" alt="${img.name}" class="w-full h-full object-cover transition-transform duration-500" loading="lazy">
-                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-                        <h3 class="font-semibold text-sm truncate mb-1">${img.name}</h3>
-                        <p class="text-white/60 text-xs">${formatDate(img.uploadedAt)}</p>
+        galleryGrid.innerHTML = filtered.slice(0, 8).map((img, index) => {
+            const isSelected = selectedImageIds.has(String(img.id));
+            return `
+            <div class="gallery-card glass rounded-2xl overflow-hidden fade-in relative group ${isSelected ? 'ring-2 ring-blue-500 bg-blue-500/10' : ''}" style="animation-delay: ${index * 0.05}s">
+                <div class="absolute top-3 left-3 z-30 transform transition-transform ${isSelected ? 'scale-100' : 'scale-90 opacity-0 group-hover:opacity-100'}">
+                    <input type="checkbox" class="w-5 h-5 rounded border-white/40 text-blue-500 focus:ring-offset-0 focus:ring-blue-500 bg-black/40 cursor-pointer backdrop-blur-sm" ${isSelected ? 'checked' : ''} onclick="event.stopPropagation(); toggleSelection('${img.id}')">
+                </div>
+                <div class="relative aspect-square overflow-hidden cursor-pointer" onclick="viewImage('${img.id}')">
+                    <img src="${img.src}" alt="${img.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${isSelected ? 'scale-95' : ''}" loading="lazy">
+                    <button onclick="event.stopPropagation(); deleteImage('${img.id}')" class="absolute top-2 right-2 p-2 bg-black/50 hover:bg-red-500/80 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity z-20" title="Delete Image"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
+                    <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-4 pointer-events-none">
+                        <div class="flex items-center justify-between mb-2 pointer-events-auto">
+                            <div class="flex items-center gap-2 truncate flex-1 min-w-0">
+                                <h3 class="font-semibold text-sm truncate text-white" title="${img.name}">${img.name}</h3>
+                                <button onclick="event.stopPropagation(); editImageName('${img.id}')" class="text-white/60 hover:text-white transition-colors flex-shrink-0" title="Edit Name"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg></button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pointer-events-auto">
+                            <p class="text-white/50 text-xs">${formatDate(img.uploadedAt)}</p>
+                            <button onclick="event.stopPropagation(); toggleLike('${img.id}')" class="flex items-center gap-1.5 group/like bg-white/10 hover:bg-white/20 px-2 py-1 rounded-full transition-colors">
+                                <svg class="w-4 h-4 transition-transform ${img.isLiked ? 'text-red-500 fill-red-500 scale-110' : 'text-white/70 group-hover/like:text-red-400 group-hover/like:scale-110'}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                <span class="text-xs font-medium text-white/90">${img.likes || 0}</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>`).join('');
+            </div>`;
+        }).join('');
     }
 
     // Toggle Tabs
