@@ -9,6 +9,7 @@
   <meta name="theme-color" content="#302b63">
   <title>Lifora Wellness | Digital Innovation</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
  
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
@@ -52,6 +53,7 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
    .gradient-bg {
   /* This adds a dark overlay so your text stays readable, then the image behind it */
   background: linear-gradient(rgba(15, 12, 41, 0.8), rgba(48, 43, 99, 0.8)), 
@@ -391,6 +393,23 @@
       font-size: 16px;
     }
 
+    /* 3D Mascot Container Styles */
+    #mascot-container {
+        width: 250px; 
+        height: 250px; 
+        margin: 0 auto 2rem auto; /* Centered with margin bottom */
+        border-radius: 50%; 
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        background: linear-gradient(135deg, rgba(44, 62, 80, 0.6), rgba(76, 161, 175, 0.6));
+        border: 2px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+    }
+    #mascot-container canvas {
+        display: block; 
+        outline: none;
+    }
+
     @media (max-width: 768px) {
       .blob {
         filter: blur(60px);
@@ -422,6 +441,11 @@
 
       input[type="file"] {
         font-size: 16px;
+      }
+      
+      #mascot-container {
+        width: 200px;
+        height: 200px;
       }
     }
 
@@ -468,24 +492,12 @@
     }
 
     @keyframes heartBeat {
-      0% {
-        transform: scale(1);
-      }
-      15% {
-        transform: scale(1.3);
-      }
-      30% {
-        transform: scale(1);
-      }
-      45% {
-        transform: scale(1.2);
-      }
-      60% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(1); }
+      15% { transform: scale(1.3); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.2); }
+      60% { transform: scale(1); }
+      100% { transform: scale(1); }
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -500,7 +512,7 @@
      <div id="login-section" class="slide-right">
       <div class="flex items-center justify-between mb-6">
        <h2 class="heading-font text-2xl font-bold">Developer Login</h2><button id="close-modal-btn" class="text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg></button>
       </div><!-- Info Banner -->
       <div class="info-banner rounded-lg p-4 mb-6">
@@ -521,7 +533,7 @@
      <div id="forgot-password-section" class="hidden">
       <div class="flex items-center justify-between mb-6">
        <h2 class="heading-font text-2xl font-bold">Reset Password</h2><button id="back-to-login-btn" class="text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg></button>
       </div>
       <form id="forgot-form" class="space-y-4">
@@ -534,7 +546,7 @@
      <div id="verification-section" class="hidden">
       <div class="flex items-center justify-between mb-6">
        <h2 class="heading-font text-2xl font-bold">Verify Code</h2><button id="close-verification-btn" class="text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg></button>
       </div>
       <div class="mb-6">
@@ -562,7 +574,7 @@
        <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 relative">
         <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-gradient-to-br from-green-400 to-blue-500"><span class="text-xs sm:text-sm font-bold heading-font">LW</span>
         </div><button id="nav-menu-toggle" class="heading-font font-semibold text-sm sm:text-base truncate hover:text-white/80 transition-colors flex items-center gap-1.5 min-h-[44px]"> Lifora Wellness 
-         <svg id="menu-chevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+         <svg id="menu-chevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
          </svg></button> <!-- Dropdown Menu -->
         <div id="nav-dropdown" class="absolute top-full left-0 mt-2 glass rounded-xl shadow-2xl min-w-max hidden z-50">
          <nav class="py-2"><a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors first:rounded-t-xl" onclick="return handleNavLink(event, 'about')"> <span>ℹ️</span> <span>About Our Company</span> </a> <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors" onclick="return handleNavLink(event, 'social')"> <span>👥</span> <span>Our Social Group</span> </a> <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors" onclick="return handleNavLink(event, 'anime')"> <span>🎨</span> <span>Anime &amp; Animated Wallpapers</span> </a> <a href="#" class="nav-link px-4 sm:px-6 py-3 flex items-center gap-3 text-sm sm:text-base hover:bg-white/10 transition-colors last:rounded-b-xl" onclick="return handleNavLink(event, 'support')"> <span>🆘</span> <span>Customer Support</span> </a>
@@ -599,11 +611,16 @@
         <div class="relative py-16 sm:py-20 px-6 sm:px-12"><!-- Left Leaf Icon -->
          <div class="absolute left-0 top-1/2 -translate-y-1/2 text-5xl sm:text-7xl opacity-50 animate-float">
           🍃
-         </div><!-- Center Branding -->
-         <div class="text-center px-4 sm:px-12">
+         </div><!-- Center Branding with 3D Mascot -->
+         <div class="text-center px-4 sm:px-12 flex flex-col items-center">
+          
+          <!-- === 3D Mascot Integration === -->
+          <div id="mascot-container" class="fade-in animate-float"></div>
+          <!-- ============================= -->
+
           <div class="mb-8">
            <h2 class="heading-font text-4xl sm:text-6xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-3">Lifora Digital</h2>
-           <p class="heading-font text-3xl sm:text-5xl font-semibold text-white/90">Anime Arts</p>
+           <p class="heading-font text-3xl sm:text-5xl font-semibold text-white/90">Animation Arts</p>
           </div>
          </div><!-- Right Plant Icon -->
          <div class="absolute right-0 top-1/2 -translate-y-1/2 text-5xl sm:text-7xl opacity-50 animate-float" style="animation-delay: -2s;">
@@ -646,7 +663,7 @@
        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
         <h2 class="heading-font text-2xl sm:text-3xl font-bold" id="gallery-title">🖼️ Multimedia Gallery</h2><!-- Search Bar -->
         <div class="relative w-full sm:w-80"><input type="text" id="search-input" placeholder="Search images by name..." class="search-input w-full glass-dark rounded-xl px-5 py-3 pl-12 text-white placeholder-white/40 outline-none">
-         <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 pointer-events-none" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+         <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
          </svg>
         </div>
        </div><!-- Gallery Grid -->
@@ -654,17 +671,17 @@
        </div><!-- Empty State -->
        <div id="empty-state" class="glass rounded-2xl p-12 text-center hidden">
         <div class="w-24 h-24 rounded-full glass-dark flex items-center justify-center mx-auto mb-6">
-         <svg class="w-12 h-12 text-white/40" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+         <svg class="w-12 h-12 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
          </svg>
         </div>
         <h3 class="heading-font text-xl font-semibold mb-2">No images found</h3>
         <p class="text-white/50">Upload your first image to start building your gallery!</p>
        </div><!-- Pagination -->
        <div id="pagination" class="flex items-center justify-center gap-2 hidden"><button id="prev-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px]">
-         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
          </svg></button>
         <div id="page-numbers" class="flex gap-1"></div><button id="next-btn" class="pagination-btn glass-dark w-10 h-10 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px]">
-         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
          </svg></button>
        </div>
       </div>
@@ -713,7 +730,7 @@
     </div><!-- Customize Mode -->
     <div id="customize-mode" class="min-h-full hidden"><!-- Success Toast -->
      <div id="success-toast" class="fixed top-20 right-4 glass rounded-lg px-6 py-4 flex items-center gap-3 hidden z-50 success-toast">
-      <svg class="w-5 h-5 text-green-400" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
       </svg><span id="toast-message">Settings saved!</span>
      </div>
      <section class="py-12 px-4 sm:px-6">
@@ -736,7 +753,7 @@
          </div><!-- Upload Zone for Gallery -->
          <div><label class="block text-sm font-medium mb-4">Upload Images</label> <label class="upload-zone rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer block"> <input type="file" id="file-input" accept="image/*" multiple class="hidden">
            <div class="w-16 h-16 rounded-full glass-dark flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            <svg class="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
            </div><p class="text-white/70 text-center"><span class="text-white font-medium">Click to upload</span> or drag and drop</p><p class="text-white/40 text-sm mt-1">PNG, JPG, GIF up to 10MB</p></label>
          </div><!-- Gallery Preview -->
@@ -790,6 +807,123 @@
   <!-- END CHAT WIDGET HTML -->
 
   <script>
+    // ==================== 3D MASCOT INITIALIZATION ====================
+    function init3DMascot() {
+        const container = document.getElementById('mascot-container');
+        if (!container) return;
+
+        const scene = new THREE.Scene();
+        
+        // Create a camera
+        const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.z = 5; 
+
+        // Create the renderer and attach it to the DOM
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(0x000000, 0); 
+        container.appendChild(renderer.domElement);
+
+        // Add Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(2, 2, 5);
+        scene.add(directionalLight);
+
+        // --- 3D ATOMIC STRUCTURE ---
+        const atomGroup = new THREE.Group();
+
+        // 1. Nucleus
+        const nucleusGeo = new THREE.SphereGeometry(0.5, 32, 32);
+        const nucleusMat = new THREE.MeshPhongMaterial({ 
+            color: 0x667eea, 
+            emissive: 0x302b63,
+            shininess: 100,
+            specular: 0x4facfe
+        });
+        const nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
+        atomGroup.add(nucleus);
+
+        // 2. Orbits and Electrons
+        const orbitRadius = 1.8;
+        const orbitGeo = new THREE.TorusGeometry(orbitRadius, 0.02, 16, 100);
+        const orbitMat = new THREE.MeshBasicMaterial({ color: 0x4facfe, transparent: true, opacity: 0.3 });
+        
+        const electronGeo = new THREE.SphereGeometry(0.15, 16, 16);
+        const electronMat = new THREE.MeshPhongMaterial({ 
+            color: 0x00f2fe, 
+            emissive: 0x00f2fe,
+            emissiveIntensity: 0.6,
+            shininess: 100 
+        });
+
+        const orbitData = [];
+        const numOrbits = 3;
+
+        for (let i = 0; i < numOrbits; i++) {
+            const ringGroup = new THREE.Group();
+            
+            // Add the ring
+            const ring = new THREE.Mesh(orbitGeo, orbitMat);
+            ringGroup.add(ring);
+
+            // Add the electron and its pivot
+            const electronPivot = new THREE.Group();
+            const electron = new THREE.Mesh(electronGeo, electronMat);
+            electron.position.x = orbitRadius; // Offset by orbit radius
+            electronPivot.add(electron);
+            
+            ringGroup.add(electronPivot);
+
+            // Tilt and rotate the orbits to form a 3D atom spread
+            ringGroup.rotation.x = Math.PI / 2.5; // Tilt angle
+            ringGroup.rotation.y = (Math.PI / numOrbits) * i; // Distribute rings evenly
+
+            atomGroup.add(ringGroup);
+            
+            // Store the pivot and a unique speed for each electron
+            orbitData.push({ 
+                pivot: electronPivot, 
+                speed: 0.03 + (i * 0.01) // Slightly different speeds
+            });
+        }
+
+        scene.add(atomGroup);
+
+        // Animation Loop 
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Rotate the entire atom slowly
+            atomGroup.rotation.y += 0.005;
+            atomGroup.rotation.x += 0.002;
+
+            // Move the electrons along their orbits
+            orbitData.forEach(data => {
+                data.pivot.rotation.z += data.speed;
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle Window Resize 
+        window.addEventListener('resize', () => {
+            if(container.clientWidth > 0) { // check ensures we don't crash when on hidden tabs
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            }
+        });
+    }
+
+    // Call 3D initialization
+    window.addEventListener('DOMContentLoaded', init3DMascot);
+
     // ==================== STATE MANAGEMENT ====================
     let currentUsername = '';
     let allProfiles = {};
@@ -1568,5 +1702,5 @@ window.dataSdk = {
     // Initialize Chat
     renderMessages();
   </script>
-</body>
+ </body>
 </html>
