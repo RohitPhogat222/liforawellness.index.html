@@ -56,7 +56,7 @@
      
    .gradient-bg {
       background-color: #1a1a2e; 
-      /* Reduced opacity for visibility */
+      /* Reduced opacity from 0.9 to 0.5/0.6 to make background image more visible */
       background: linear-gradient(rgba(10, 10, 20, 0.5), rgba(26, 26, 46, 0.6)), 
                    url('https://raw.githubusercontent.com/RohitPhogat222/liforawellness.index.html/main/Screenshot%202025-03-07%20193036.png');
       background-size: cover;
@@ -305,7 +305,8 @@
         </div>
    </div>
 
-   <div id="login-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 modal-backdrop bg-black/70" style="backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+   <!-- Updated Z-Index to z-[100] to fix header overlap -->
+   <div id="login-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 modal-backdrop bg-black/70" style="backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
     <div class="glass modal-content rounded-3xl p-8 sm:p-12 w-full max-w-md max-h-screen overflow-y-auto relative">
         <button id="close-modal-btn" class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center z-10"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
         <div id="login-section" class="slide-right">
@@ -313,7 +314,7 @@
             <div class="info-banner rounded-lg p-4 mb-6"><p class="text-sm text-white/80" data-translate="loginInfo">📝 Please fill in the details to use the website as a developer</p></div>
             <form id="login-form" class="space-y-4">
                <div class="form-group"><label class="block text-sm font-medium mb-2" data-translate="username">Username</label><input type="text" id="username-input" placeholder="Enter your username" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="username-error" class="error-message hidden"></div></div>
-               <div class="form-group"><label class="block text-sm font-medium mb-2" data-translate="password">Password</label><input type="password" id="password-input" placeholder="Enter your password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><div id="password-error" class="error-message hidden"></div></div>
+               <div class="form-group"><label class="block text-sm font-medium mb-2" data-translate="password">Password</label><div class="relative"><input type="password" id="password-input" placeholder="Enter your password" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white placeholder-white/40 outline-none" required><button type="button" onclick="togglePasswordVisibility('password-input', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg></button></div><div id="password-error" class="error-message hidden"></div></div>
                <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"> <span>🔓</span> <span data-translate="loginBtn">Login to Dashboard</span> </button>
             </form>
             <div class="text-center mt-6"><p class="text-white/60 text-sm mb-3" data-translate="forgotPass">Forgot your password?</p><button id="forgot-password-btn" class="text-blue-400 hover:text-blue-300 active:text-blue-500 transition-colors text-sm underline" data-translate="resetHere"> Click here to reset </button>
@@ -337,8 +338,8 @@
         <div id="register-step-3" class="hidden slide-right">
             <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">Create Password</h2></div>
             <form id="reg-form-3" class="space-y-4">
-                <div class="form-group"><label class="block text-sm font-medium mb-2">Create Password</label><input type="password" id="reg-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required></div>
-                <div class="form-group"><label class="block text-sm font-medium mb-2">Confirm Password</label><input type="password" id="reg-confirm-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required><div id="reg-error-3" class="error-message hidden"></div></div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Create Password</label><div class="relative"><input type="password" id="reg-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required><button type="button" onclick="togglePasswordVisibility('reg-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg></button></div></div>
+                <div class="form-group"><label class="block text-sm font-medium mb-2">Confirm Password</label><div class="relative"><input type="password" id="reg-confirm-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required><div id="reg-error-3" class="error-message hidden"></div><button type="button" onclick="togglePasswordVisibility('reg-confirm-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg></button></div></div>
                 <button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"><span>💾</span><span>Confirm Registration</span></button>
             </form>
         </div>
@@ -352,7 +353,7 @@
         </div>
         <div id="reset-step-3" class="hidden slide-right">
              <div class="flex items-center justify-between mb-6"><h2 class="heading-font text-2xl font-bold">New Password</h2></div>
-             <form id="reset-form-3" class="space-y-4"><div class="form-group"><label class="block text-sm font-medium mb-2">New Password</label><input type="password" id="reset-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required></div><div class="form-group"><label class="block text-sm font-medium mb-2">Confirm New Password</label><input type="password" id="reset-confirm-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required><div id="reset-error-3" class="error-message hidden"></div></div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"><span>💾</span><span>Confirm</span></button></form>
+             <form id="reset-form-3" class="space-y-4"><div class="form-group"><label class="block text-sm font-medium mb-2">New Password</label><div class="relative"><input type="password" id="reset-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required><button type="button" onclick="togglePasswordVisibility('reset-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg></button></div></div><div class="form-group"><label class="block text-sm font-medium mb-2">Confirm New Password</label><div class="relative"><input type="password" id="reset-confirm-pass" class="input-field w-full glass-dark rounded-lg px-4 py-3 text-white outline-none" required><div id="reset-error-3" class="error-message hidden"></div><button type="button" onclick="togglePasswordVisibility('reset-confirm-pass', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg></button></div></div><button type="submit" class="w-full glass px-6 py-3 rounded-lg font-semibold hover:bg-white/15 active:bg-white/20 transition-all flex items-center justify-center gap-2"><span>💾</span><span>Confirm</span></button></form>
         </div>
     </div>
    </div>
@@ -839,6 +840,19 @@
         hash = hash & hash;
       }
       return 'hash_' + Math.abs(hash).toString(36);
+    }
+    
+    window.togglePasswordVisibility = function(inputId, btn) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+            input.type = "text";
+            // Eye Open
+            btn.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>`;
+        } else {
+            input.type = "password";
+            // Eye Closed (Slash)
+            btn.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>`;
+        }
     }
  
     // ==================== TRANSLATION SYSTEM ====================
